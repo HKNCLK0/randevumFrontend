@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { routes } from "./Routes";
 import { NotFound } from "./screens";
 

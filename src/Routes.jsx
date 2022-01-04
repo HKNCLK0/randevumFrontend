@@ -1,4 +1,11 @@
-import { ForgotPassword, Home, Login, NewPassword } from "./screens";
+import {
+  EmailVerification,
+  ForgotPassword,
+  Home,
+  Login,
+  NewPassword,
+  Register,
+} from "./screens";
 
 export const routes = [
   {
@@ -16,5 +23,13 @@ export const routes = [
   {
     path: "/login/forgot-password/:token",
     element: <NewPassword />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/register/email-verification",
+    element: <EmailVerification />,
   },
 ];
