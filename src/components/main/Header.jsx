@@ -6,7 +6,11 @@ import { IoClose } from "react-icons/io5";
 const Header = () => {
   const token = sessionStorage.getItem("token");
   const [open, setOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <header className="font-Montserrat">
       {/* Masaüstü */}
@@ -113,13 +117,13 @@ const Header = () => {
         >
           Oluştur
         </Link>
-        {loggedIn ? (
-          <Link
-            to="/dashboard"
+        {token ? (
+          <button
+            onClick={() => handleLogout()}
             className="w-1/2 text-textColor px-2 py-3 text-sm font-bold flex items-center justify-center rounded-lg bg-boxColor"
           >
-            Hesabım
-          </Link>
+            Çıkış Yap
+          </button>
         ) : (
           <div className="flex gap-4 pt-4 items-center">
             <Link className="text-textColor font-semibold" to="/login">

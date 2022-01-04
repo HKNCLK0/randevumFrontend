@@ -60,3 +60,17 @@
 .cart-shadow {
     box-shadow: 0px 4px 4px hsla(0, 22%, 24%, 0.25);
 }
+
+/* Modal Animation */
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}

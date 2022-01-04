@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Header, Footer } from "../components/main";
 import {
   Meets,
@@ -9,12 +9,11 @@ import {
 } from "../components/Home";
 
 const Home = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
-  console.log(process.env.REACT_APP_SECRET_NAME);
+  const token = sessionStorage.getItem("token");
   return (
     <>
       <Header />
-      {loggedIn ? <Meets /> : <HeroSection />}
+      {token ? <Meets /> : <HeroSection />}
       <div className="container mx-auto mt-8 flex flex-col gap-10">
         <Category />
         <HowToWorks />

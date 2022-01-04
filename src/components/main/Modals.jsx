@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 
 const Modals = (props) => {
-  const { state, setState } = props;
+  const { isOpen, setIsOpen } = props;
+
   const customStyles = {
     content: {
       top: "50%",
@@ -12,7 +13,7 @@ const Modals = (props) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: "#222020",
-      width: "25%",
+      width: "75%",
       height: "30%",
       borderRadius: "20px",
       display: "flex",
@@ -34,12 +35,12 @@ const Modals = (props) => {
   };
 
   const closeModal = () => {
-    setState(false);
+    setIsOpen(false);
   };
   Modal.setAppElement("#root");
   return (
     <Modal
-      isOpen={state}
+      isOpen={isOpen}
       shouldCloseOnOverlayClick={false}
       onRequestClose={closeModal}
       style={customStyles}

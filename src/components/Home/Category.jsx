@@ -22,8 +22,9 @@ const Category = () => {
         <Loader />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-16 gap-y-6 md:gap-x-14">
-          {data.map((category) => (
+          {data.map((category, index) => (
             <Link
+              key={index}
               to={category.urlParams}
               className="w-24 h-28 text-center gap-2 border-2 rounded-lg border-borderAndOtherRed transition-colors duration-200 hover:bg-borderAndOtherRed flex flex-col items-center justify-center cart-shadow"
             >

@@ -1,4 +1,4 @@
-import { Home, Login } from "./screens";
+import { ForgotPassword, Home, Login, NewPassword } from "./screens";
 
 export const routes = [
   {
@@ -8,5 +8,13 @@ export const routes = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/login/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/login/forgot-password/:token",
+    element: <NewPassword />,
   },
 ];
