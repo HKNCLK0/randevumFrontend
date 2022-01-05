@@ -42,7 +42,6 @@ const Register = () => {
         })
         .then((res) => {
           sessionStorage.setItem("token", res.data.token);
-          localStorage.setItem("userID", res.data.user.id);
           navigate("/register/email-verification");
         })
         .catch((err) => {

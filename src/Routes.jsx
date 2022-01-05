@@ -4,6 +4,7 @@ import {
   Home,
   Login,
   NewPassword,
+  PhoneNumberVerification,
   Register,
 } from "./screens";
 
@@ -31,5 +32,9 @@ export const routes = [
   {
     path: "/register/email-verification",
     element: <EmailVerification />,
+  },
+  {
+    path: "/register/phone-verification",
+    element: <PhoneNumberVerification />,
   },
 ];

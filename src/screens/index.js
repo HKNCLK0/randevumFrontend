@@ -6,6 +6,7 @@ import NewPassword from "./NewPassword";
 
 import Register from "./Register";
 import EmailVerification from "./EmailVerification";
+import PhoneNumberVerification from "./PhoneNumberVerification";
 
 import NotFound from "./NotFound";
 
@@ -17,4 +18,5 @@ export {
   NotFound,
   Register,
   EmailVerification,
+  PhoneNumberVerification,
 };
