@@ -1,4 +1,6 @@
 import {
+  Create,
+  Dashboard,
   EmailVerification,
   ForgotPassword,
   Home,
@@ -36,5 +38,13 @@ export const routes = [
   {
     path: "/register/phone-verification",
     element: <PhoneNumberVerification />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
+  {
+    path: "/create/:businessID",
+    element: <Create />,
   },
 ];

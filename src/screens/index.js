@@ -8,6 +8,10 @@ import Register from "./Register";
 import EmailVerification from "./EmailVerification";
 import PhoneNumberVerification from "./PhoneNumberVerification";
 
+import Dashboard from "./Dashboard";
+
+import Create from "./Create";
+
 import NotFound from "./NotFound";
 
 export {
@@ -19,4 +23,6 @@ export {
   Register,
   EmailVerification,
   PhoneNumberVerification,
+  Dashboard,
+  Create,
 };
