@@ -1,23 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Header, Loader } from "../components/main";
-import { MainContainer } from "../components/main/UI";
+import { Button, MainContainer } from "../components/main/UI";
 
 import StarRatings from "react-star-ratings";
+import { decodeToken } from "react-jwt";
 
-//TODO: Seçilenler State Atılacak ve Saat Seçimi Yapılacak
+//BUG:Mobilde Seçilen İptal Edilirken Görsel Problem Var
 
 const Create = () => {
+  const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
+  const token = sessionStorage.getItem("token");
+  const user = decodeToken(token);
+  console.log(user.id);
   const { businessID } = useParams();
   const [data, setData] = useState([]);
 
+  const [selectedDate, setSelecetedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+
   useEffect(() => {
-    axios
-      .get(`${API_URL}/businesses/${businessID}`)
-      .then((res) => setData(res.data));
+    if (token) {
+      axios
+        .get(`${API_URL}/businesses/${businessID}`)
+        .then((res) => setData(res.data));
+    } else {
+      navigate("/login");
+    }
   }, []);
+
+  const handleCreate = () => {
+    //axios.post(`${API_URL}/meets`, {
+    //})
+  };
   return (
     <>
       <Header />
@@ -53,7 +70,7 @@ const Create = () => {
                   ({data.businessPoint})
                 </h1>
               </div> */}
-              <div>
+              <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-textColor font-semibold text-sm">
                     Randevu Tarihini Seçiniz
@@ -63,7 +80,16 @@ const Create = () => {
                       {data.businessMeetDates.map((meetDate, index) => (
                         <button
                           key={index}
-                          className="border-2 border-borderAndOtherRed text-textColor font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent"
+                          onClick={() =>
+                            setSelecetedDate(
+                              meetDate == selectedDate ? "" : meetDate
+                            )
+                          }
+                          className={`${
+                            selectedDate == meetDate
+                              ? "border-transparent bg-textColor text-boxColor"
+                              : ""
+                          } border-2 border-borderAndOtherRed text-textColor font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
                         >
                           {meetDate}
                         </button>
@@ -73,6 +99,39 @@ const Create = () => {
                     <Loader />
                   )}
                 </div>
+                <div className="flex flex-col gap-2">
+                  <h1 className="text-textColor font-semibold text-sm">
+                    Randevu Saatini Seçiniz
+                  </h1>
+                  {data.businessMeetTimes ? (
+                    <div className="grid grid-cols-3 md:grid-cols-6 gap-x-4 gap-y-2">
+                      {data.businessMeetTimes.map((meetTime, index) => (
+                        <button
+                          key={index}
+                          onClick={() =>
+                            setSelectedTime(
+                              meetTime == selectedTime ? "" : meetTime
+                            )
+                          }
+                          className={`${
+                            selectedTime == meetTime
+                              ? "border-transparent bg-textColor text-boxColor"
+                              : "text-textColor border-borderAndOtherRed "
+                          } border-2 font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
+                        >
+                          {meetTime}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <Loader />
+                  )}
+                </div>
+              </div>
+              <div className="w-full flex justify-center pt-4">
+                <Button disabled={!selectedTime || !selectedDate}>
+                  Randevu Oluştur
+                </Button>
               </div>
             </div>
           </div>
