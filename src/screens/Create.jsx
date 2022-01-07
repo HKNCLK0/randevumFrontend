@@ -32,8 +32,10 @@ const Create = () => {
   }, []);
 
   const handleCreate = () => {
-    //axios.post(`${API_URL}/meets`, {
-    //})
+    axios.post(`${API_URL}/meets`, {
+      userID: user.id,
+      businessID,
+    });
   };
   return (
     <>
