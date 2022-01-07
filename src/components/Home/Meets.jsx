@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { decodeToken } from "react-jwt";
 import { Link } from "react-router-dom";
 import { Loader } from "../main";
 
 const Meets = () => {
   const API_URL = process.env.REACT_APP_API_URL;
+  const token = sessionStorage.getItem("token");
+  const user = decodeToken(token);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const userID = "61b92b9060bb1003ce68bf40";
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${API_URL}/meets/${userID}`)
+      .get(`${API_URL}/meets/${user.id}`)
       .then((res) => setData(res.data))
       .finally(() => setLoading(false));
   }, []);
@@ -25,7 +26,7 @@ const Meets = () => {
       ) : (
         <div className="flex flex-col items-center gap-4">
           {data.length > 0 ? (
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-6 gap-y-6 md:gap-x-14">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-6 gap-y-6 md:gap-x-8">
               {data.map((meet) => (
                 <div
                   key={meet._id}

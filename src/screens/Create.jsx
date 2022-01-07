@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { Header, Loader } from "../components/main";
+import { Error, Header, Loader, Modals } from "../components/main";
 import { Button, MainContainer } from "../components/main/UI";
 
 import StarRatings from "react-star-ratings";
@@ -14,12 +14,16 @@ const Create = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem("token");
   const user = decodeToken(token);
-  console.log(user.id);
   const { businessID } = useParams();
   const [data, setData] = useState([]);
 
   const [selectedDate, setSelecetedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -30,12 +34,23 @@ const Create = () => {
       navigate("/login");
     }
   }, []);
-
   const handleCreate = () => {
-    axios.post(`${API_URL}/meets`, {
-      userID: user.id,
-      businessID,
-    });
+    setError(false);
+    axios
+      .post(`${API_URL}/meets`, {
+        userID: user.id,
+        businessID,
+        businessName: data.businessName,
+        date: selectedDate,
+        clock: selectedTime,
+      })
+      .then((res) => setIsOpen(true))
+      .catch(() => {
+        setError(true);
+        setErrorMessage(
+          "Randevu Oluşturulamıyor! Lütfen Daha Sonra Tekrar Deneyin Veya Destekle İletişime Geçin!"
+        );
+      });
   };
   return (
     <>
@@ -43,6 +58,7 @@ const Create = () => {
       <MainContainer>
         <div className="w-11/12 md:w-4/5 flex flex-col gap-4 items-center bg-boxColor box-shadow py-8 rounded-lg">
           <h1 className="font-bold text-xl text-textColor">Oluştur</h1>
+          <Error error={error}>{errorMessage}</Error>
           <div className="flex flex-col md:flex-row gap-8 md:gap-x-12 w-full px-4 md:px-16">
             <img
               src={data.businessImage}
@@ -84,14 +100,14 @@ const Create = () => {
                           key={index}
                           onClick={() =>
                             setSelecetedDate(
-                              meetDate == selectedDate ? "" : meetDate
+                              meetDate === selectedDate ? "" : meetDate
                             )
                           }
                           className={`${
-                            selectedDate == meetDate
+                            selectedDate === meetDate
                               ? "border-transparent bg-textColor text-boxColor"
-                              : ""
-                          } border-2 border-borderAndOtherRed text-textColor font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
+                              : "text-textColor border-borderAndOtherRed "
+                          } border-2 font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
                         >
                           {meetDate}
                         </button>
@@ -112,11 +128,11 @@ const Create = () => {
                           key={index}
                           onClick={() =>
                             setSelectedTime(
-                              meetTime == selectedTime ? "" : meetTime
+                              meetTime === selectedTime ? "" : meetTime
                             )
                           }
                           className={`${
-                            selectedTime == meetTime
+                            selectedTime === meetTime
                               ? "border-transparent bg-textColor text-boxColor"
                               : "text-textColor border-borderAndOtherRed "
                           } border-2 font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
@@ -131,13 +147,33 @@ const Create = () => {
                 </div>
               </div>
               <div className="w-full flex justify-center pt-4">
-                <Button disabled={!selectedTime || !selectedDate}>
+                <Button
+                  onClick={handleCreate}
+                  disabled={!selectedTime || !selectedDate}
+                >
                   Randevu Oluştur
                 </Button>
               </div>
             </div>
           </div>
         </div>
+        <Modals isOpen={modalIsOpen} setIsOpen={setIsOpen}>
+          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
+            <h1 className="text-textColor font-bold text-xl">
+              Randevu Oluşturuldu
+            </h1>
+            <p className="text-textColor font-semibold text-md">
+              {selectedDate}, saat {selectedTime} {data.businessName} randevunuz
+              oluşturulmuştur!
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/")}
+            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
+          >
+            Tamam
+          </button>
+        </Modals>
       </MainContainer>
     </>
   );

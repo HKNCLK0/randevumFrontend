@@ -100,7 +100,7 @@ const Header = () => {
           Anasayfa
         </Link>
         <Link
-          to="/how-to-works"
+          to="/nasil-calisir"
           className="w-1/2 text-textColor px-2 py-3 text-sm font-semibold flex items-center justify-center rounded-lg bg-boxColor"
         >
           Nasıl Çalışır?

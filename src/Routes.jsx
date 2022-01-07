@@ -1,9 +1,11 @@
 import {
   Create,
+  CreateBusinessList,
   Dashboard,
   EmailVerification,
   ForgotPassword,
   Home,
+  HowToWorks,
   Login,
   NewPassword,
   PhoneNumberVerification,
@@ -44,7 +46,15 @@ export const routes = [
     element: <Dashboard />,
   },
   {
+    path: "/create",
+    element: <CreateBusinessList />,
+  },
+  {
     path: "/create/:businessID",
     element: <Create />,
+  },
+  {
+    path: "/nasil-calisir",
+    element: <HowToWorks />,
   },
 ];

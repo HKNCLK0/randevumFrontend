@@ -10,7 +10,10 @@ import PhoneNumberVerification from "./PhoneNumberVerification";
 
 import Dashboard from "./Dashboard";
 
+import CreateBusinessList from "./CreateBusinessList";
 import Create from "./Create";
+
+import HowToWorks from "./HowToWorks";
 
 import NotFound from "./NotFound";
 
@@ -24,5 +27,7 @@ export {
   EmailVerification,
   PhoneNumberVerification,
   Dashboard,
+  CreateBusinessList,
   Create,
+  HowToWorks,
 };

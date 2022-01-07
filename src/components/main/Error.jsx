@@ -6,7 +6,7 @@ const Error = (props) => {
     <h1
       className={`${
         error
-          ? "border-2 px-4 py-4 border-borderAndOtherRed text-borderAndOtherRed font-semibold text-sm rounded-lg"
+          ? "border-2 px-4 py-4 mx-4 text-center border-borderAndOtherRed text-borderAndOtherRed font-semibold text-sm rounded-lg"
           : "hidden"
       }`}
     >
