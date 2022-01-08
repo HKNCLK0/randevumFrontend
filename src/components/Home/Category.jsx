@@ -25,7 +25,8 @@ const Category = () => {
           {data.map((category, index) => (
             <Link
               key={index}
-              to={category.urlParams}
+              to={`/category/${category.urlParams}`}
+              state={{ category }}
               className="w-24 h-28 text-center gap-2 border-2 rounded-lg border-borderAndOtherRed transition-colors duration-200 hover:bg-borderAndOtherRed flex flex-col items-center justify-center cart-shadow"
             >
               <img

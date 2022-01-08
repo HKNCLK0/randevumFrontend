@@ -17,6 +17,7 @@ const Login = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    document.getElementById("emailInput").focus();
     if (token) {
       navigate("/");
     }
@@ -52,6 +53,7 @@ const Login = () => {
           <Error error={error}>E-Posta veya Şifre Hatalı</Error>
           <div className="w-full flex flex-col items-center gap-4">
             <Input
+              id="emailInput"
               value={email}
               setError={setError}
               setState={setEmail}

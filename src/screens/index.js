@@ -15,6 +15,8 @@ import Create from "./Create";
 
 import HowToWorks from "./HowToWorks";
 
+import BusinessFilterByCategory from "./BusinessFilterByCategory";
+
 import NotFound from "./NotFound";
 
 export {
@@ -30,4 +32,5 @@ export {
   CreateBusinessList,
   Create,
   HowToWorks,
+  BusinessFilterByCategory,
 };

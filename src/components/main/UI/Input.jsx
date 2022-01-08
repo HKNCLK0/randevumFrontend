@@ -7,6 +7,7 @@ const Input = ({
   inputType,
   placeholder,
   keyPress,
+  id,
 }) => {
   return (
     <input
@@ -17,6 +18,7 @@ const Input = ({
       placeholder={placeholder}
       onKeyPress={keyPress}
       type={inputType}
+      id={id}
       className="md:w-1/2 px-2 font-semibold py-2 outline-none border-transparent text-sm border-2 transition-colors duration-200 focus:border-borderAndOtherRed rounded-lg"
     />
   );

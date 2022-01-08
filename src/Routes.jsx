@@ -1,4 +1,5 @@
 import {
+  BusinessFilterByCategory,
   Create,
   CreateBusinessList,
   Dashboard,
@@ -56,5 +57,9 @@ export const routes = [
   {
     path: "/nasil-calisir",
     element: <HowToWorks />,
+  },
+  {
+    path: "/category/:categoryParams",
+    element: <BusinessFilterByCategory />,
   },
 ];
