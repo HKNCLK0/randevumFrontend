@@ -44,7 +44,7 @@ const Create = () => {
         date: selectedDate,
         clock: selectedTime,
       })
-      .then((res) => setIsOpen(true))
+      .then(() => setIsOpen(true))
       .catch(() => {
         setError(true);
         setErrorMessage(
