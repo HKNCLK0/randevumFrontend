@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 //TODO:Linklerin Sayfaları Yapılacak
-//BUG:Yeni Şifre Button Disabled
 
 const Footer = () => {
   return (
     <footer className="flex w-full h-60 md:h-96 px-4 md:px-24 py-4 bg-boxColor mt-10 font-Montserrat">
-      <div className="grid grid-cols-12 w-full">
+      {/* Desktop */}
+      <div className="md:grid grid-cols-12 w-full hidden">
         <div className="col-span-3 flex flex-col items-center justify-center gap-2">
           <img
             className="w-2/5"

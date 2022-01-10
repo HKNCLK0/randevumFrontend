@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Header, Error } from "../components/main";
-import { Button, Input, MainContainer } from "../components/main/UI";
+import {
+  BusinessCard,
+  Button,
+  Input,
+  MainContainer,
+} from "../components/main/UI";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -147,6 +152,9 @@ const Register = () => {
             Kayıt Ol
           </Button>
         </div>
+        <BusinessCard href="https://business.randevum.tech/register">
+          İşletme Kaydı İçin Tıklayınız
+        </BusinessCard>
       </MainContainer>
     </>
   );

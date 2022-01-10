@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LeftNavBar from "../components/Dashboard/LeftNavBar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -8,23 +9,14 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
+      navigate("/");
     }
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    window.location.reload();
-  };
   return (
-    <div className="font-Montserrat">
-      <button
-        onClick={() => handleLogout()}
-        className="bg-green-400 p-4 font-bold"
-      >
-        Çıkış Yap
-      </button>
-    </div>
+    <>
+      <LeftNavBar />
+    </>
   );
 };
 

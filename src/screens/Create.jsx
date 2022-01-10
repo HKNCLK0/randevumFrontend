@@ -24,6 +24,7 @@ const Create = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [loginAlertModal, setIsLoginAlertModal] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -31,7 +32,7 @@ const Create = () => {
         .get(`${API_URL}/businesses/${businessID}`)
         .then((res) => setData(res.data));
     } else {
-      navigate("/login");
+      setIsLoginAlertModal(true);
     }
   }, []);
   const handleCreate = () => {
@@ -172,6 +173,20 @@ const Create = () => {
             className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
           >
             Tamam
+          </button>
+        </Modals>
+        <Modals isOpen={loginAlertModal} setIsOpen={setIsLoginAlertModal}>
+          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
+            <h1 className="text-textColor font-bold text-xl">Giriş Yap</h1>
+            <p className="text-textColor font-semibold text-md">
+              Devam Etmek İçin Lütfen Giriş Yapın!
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/login")}
+            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
+          >
+            Giriş Yap
           </button>
         </Modals>
       </MainContainer>

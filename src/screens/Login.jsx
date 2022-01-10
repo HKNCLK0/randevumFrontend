@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Header, Error, Loader } from "../components/main";
 
-import { Button, Input, MainContainer } from "../components/main/UI";
+import {
+  BusinessCard,
+  Button,
+  Input,
+  MainContainer,
+} from "../components/main/UI";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -83,14 +88,9 @@ const Login = () => {
             Şifremi Unuttum
           </Link>
         </div>
-        <a
-          href="https://business.randevum.tech/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-boxColor text-center w-2/3 md:w-1/4 py-8 rounded-lg font-semibold text-textColor text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor"
-        >
-          İşletme Girişi İçin Tıklayın
-        </a>
+        <BusinessCard href="https://business.randevum.tech/login">
+          İşletme Girişi İçin Tıklayınız
+        </BusinessCard>
       </MainContainer>
     </>
   );
