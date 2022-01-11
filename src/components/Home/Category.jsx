@@ -18,7 +18,7 @@ const Category = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-boxColor px-4 py-4 rounded-lg font-Montserrat box-shadow gap-6">
       <h1 className="font-bold text-textColor">Kategoriler</h1>
-      {loading ? (
+      {data.length <= 0 ? (
         <Loader />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-16 gap-y-6 md:gap-x-14">

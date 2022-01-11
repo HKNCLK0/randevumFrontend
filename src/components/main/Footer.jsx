@@ -5,8 +5,10 @@ import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 //TODO:Linklerin Sayfaları Yapılacak
 
 const Footer = () => {
+  const date = new Date();
+  const yil = date.getFullYear();
   return (
-    <footer className="flex w-full h-60 md:h-96 px-4 md:px-24 py-4 bg-boxColor mt-10 font-Montserrat">
+    <footer className="flex w-full h-60 md:h-96 px-4 md:px-24 py-4 flex-col justify-between items-center pt-16 bg-boxColor mt-10 font-Montserrat">
       {/* Desktop */}
       <div className="md:grid grid-cols-12 w-full hidden">
         <div className="col-span-3 flex flex-col items-center justify-center gap-2">
@@ -103,6 +105,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <h1 className="text-textColor font-medium text-sm opacity-30">
+        Randevum © {yil} || All Rights Reserved
+      </h1>
     </footer>
   );
 };

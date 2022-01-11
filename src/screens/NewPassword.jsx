@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Header, Modals, Error } from "../components/main";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "../components/main/UI";
 
 //TODO:Modallarda Hata Veya Başarılı İconları Eklenecek
 const NewPassword = () => {
@@ -69,12 +70,12 @@ const NewPassword = () => {
               className="md:w-1/2 px-2 font-semibold py-2 outline-none border-transparent text-sm border-2 transition-colors duration-200 focus:border-borderAndOtherRed rounded-lg"
             />
           </div>
-          <button
-            onClick={() => handleSubmit()}
-            className="border-2 px-4 py-2 rounded-lg text-textColor transition-colors duration-200 font-semibold hover:bg-textColor hover:text-boxColor hover:border-transparent border-borderAndOtherRed"
+          <Button
+            disabled={!firstPassword || !secondPassword}
+            onClick={handleSubmit}
           >
             Kaydet
-          </button>
+          </Button>
         </div>
         {/* ErrorModal */}
         <Modals isOpen={errorModal} setIsOpen={setErrorModal}>
