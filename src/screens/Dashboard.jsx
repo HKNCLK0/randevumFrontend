@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <LeftNavBar />
+      <LeftNavBar page="ana" />
     </>
   );
 };

@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Header, Loader } from "../components/main";
 import { MainContainer } from "../components/main/UI";
 
+//TODO:Sıralama Ölçütü Yapılacak
 const BusinessFilterByCategory = () => {
   const navigate = useNavigate();
   const location = useLocation();
