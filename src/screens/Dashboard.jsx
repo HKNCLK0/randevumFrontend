@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftNavBar from "../components/Dashboard/LeftNavBar";
 
+//BUG:Notification Tüm Sayfalarda Fetch Yapacak
+
 const Dashboard = () => {
   const navigate = useNavigate();
 

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import registerReducer from "./redux/RegisterSlices";
+import notificationsCounter from "./redux/Notifications";
 
 export default configureStore({
   reducer: {
-    register: registerReducer,
+    register: notificationsCounter,
   },
 });

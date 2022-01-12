@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
 
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,14 @@ import { FiPlusCircle } from "react-icons/fi";
 import { HiOutlineLogin } from "react-icons/hi";
 
 import { Loader } from "../main";
+import { useSelector } from "react-redux";
 
 const LeftNavBar = ({ page }) => {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const user = decodeToken(token);
+
+  const count = useSelector((state) => state.register.count);
 
   useEffect(() => {
     if (!token) {
@@ -59,14 +62,21 @@ const LeftNavBar = ({ page }) => {
             onClick={() => navigate("/dashboard/notifications")}
             className={`${
               page === "notifications" ? "text-textColor" : "text-gray-400"
-            } text-center font-semibold text-sm box-shadow bg-boxColor py-3 rounded-lg`}
+            } font-semibold items-center flex justify-center relative text-sm box-shadow bg-boxColor py-3 rounded-lg`}
           >
             Bildirimler
+            <div
+              className={`${
+                count === 0 ? "hidden" : ""
+              } w-6 h-6 right-4 flex items-center justify-center border-2 border-borderAndOtherRed absolute rounded-full`}
+            >
+              <h1 className="text-textColor text-xs">{count}</h1>
+            </div>
           </button>
           <button
-            onClick={() => navigate("/dashboard/calender")}
+            onClick={() => navigate("/dashboard/calendar")}
             className={`${
-              page === "calender" ? "text-textColor" : "text-gray-400"
+              page === "calendar" ? "text-textColor" : "text-gray-400"
             } text-center font-semibold text-sm box-shadow bg-boxColor py-3 rounded-lg`}
           >
             Takvim

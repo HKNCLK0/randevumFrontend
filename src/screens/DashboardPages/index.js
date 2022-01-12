@@ -1,5 +1,5 @@
 import Meets from "./Meets";
 import Notifications from "./Notifications";
-import Calender from "./Calender";
+import Calendar from "./Calendar";
 
-export { Meets, Notifications, Calender };
+export { Meets, Notifications, Calendar };

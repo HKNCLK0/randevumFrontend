@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
-import LeftNavBar from "../../components/Dashboard/LeftNavBar";
+import { LeftNavBar, Main, Box } from "../../components/Dashboard";
 import { Error, Loader } from "../../components/main";
 import { Link } from "react-router-dom";
 
@@ -25,8 +25,8 @@ const Meets = () => {
   return (
     <div className="flex justify-between font-Montserrat">
       <LeftNavBar page="meets" />
-      <main className="flex flex-col w-5/6 items-center py-16">
-        <div className="w-5/6 py-6 flex flex-col gap-8 items-center rounded-lg box-shadow bg-boxColor">
+      <Main className="flex flex-col w-5/6 items-center py-16">
+        <Box className="w-5/6 py-6 flex flex-col gap-8 items-center rounded-lg box-shadow bg-boxColor">
           <h1 className="text-textColor font-bold text-xl">Randevularım</h1>
           <Error error={error}>
             Bir Hata Oluştu Lütfen Daha Sonra Tekrar Deneyin
@@ -71,8 +71,8 @@ const Meets = () => {
               )}
             </div>
           )}
-        </div>
-      </main>
+        </Box>
+      </Main>
     </div>
   );
 };
