@@ -15,6 +15,22 @@ import {
 
 import { Meets, Notifications, Calendar } from "./screens/DashboardPages";
 
+import {
+  About,
+  Career,
+  Contact,
+  SocialResponsibility,
+} from "./screens/FooterPages/Discover";
+
+import {
+  AskedQuestions,
+  PrivacyPolicy,
+  KVKK,
+  CookiePolicy,
+} from "./screens/FooterPages/Help";
+
+import { BusinessPolicy, FeesAndPricing } from "./screens/FooterPages/Business";
+
 export const routes = [
   {
     path: "/",
@@ -75,5 +91,52 @@ export const routes = [
   {
     path: "/category/:categoryParams",
     element: <BusinessFilterByCategory />,
+  },
+
+  //TODO:Footer Pages İçerikleri Yapılacak
+  //Footer - Discover
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/career",
+    element: <Career />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/social-responsibility",
+    element: <SocialResponsibility />,
+  },
+
+  //Footer - Help
+  {
+    path: "/asked-questions",
+    element: <AskedQuestions />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+  {
+    path: "/kvkk",
+    element: <KVKK />,
+  },
+  {
+    path: "/cookie-policy",
+    element: <CookiePolicy />,
+  },
+
+  //Footer - Business
+  {
+    path: "/business-policy",
+    element: <BusinessPolicy />,
+  },
+  {
+    path: "/fees-and-pricing",
+    element: <FeesAndPricing />,
   },
 ];

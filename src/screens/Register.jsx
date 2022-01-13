@@ -10,8 +10,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-//TODO:En Alta İşletme Kayıt
-
 const Register = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();

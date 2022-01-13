@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { Error, Header, Loader, Modals } from "../components/main";
 import { Button, MainContainer } from "../components/main/UI";
 
 import StarRatings from "react-star-ratings";
 import { decodeToken } from "react-jwt";
 
+import SuccessModal from "../components/main/Modals/SuccessModal";
+import NotAuthModal from "../components/main/Modals/NotAuthModal";
+
 //BUG:Mobilde Seçilen İptal Edilirken Görsel Problem Var
 
 const Create = () => {
-  const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem("token");
   const user = decodeToken(token);
@@ -158,37 +161,22 @@ const Create = () => {
             </div>
           </div>
         </div>
-        <Modals isOpen={modalIsOpen} setIsOpen={setIsOpen}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">
-              Randevu Oluşturuldu
-            </h1>
-            <p className="text-textColor font-semibold text-md">
-              {selectedDate}, saat {selectedTime} {data.businessName} randevunuz
-              oluşturulmuştur!
-            </p>
-          </div>
-          <button
-            onClick={() => navigate("/")}
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-          >
-            Tamam
-          </button>
-        </Modals>
-        <Modals isOpen={loginAlertModal} setIsOpen={setIsLoginAlertModal}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">Giriş Yap</h1>
-            <p className="text-textColor font-semibold text-md">
-              Devam Etmek İçin Lütfen Giriş Yapın!
-            </p>
-          </div>
-          <button
-            onClick={() => navigate("/login")}
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-          >
-            Giriş Yap
-          </button>
-        </Modals>
+        <SuccessModal
+          isOpen={modalIsOpen}
+          setIsOpen={setIsOpen}
+          title="Randevu Oluşturuldu"
+          subtitle={`${selectedDate} tarihli, ${selectedTime} saatli ${data.businessName} randevunuz oluşturulmuştur`}
+          buttonText="Tamam"
+          buttonNavigateURL="/"
+        />
+        <NotAuthModal
+          isOpen={loginAlertModal}
+          setIsOpen={setIsLoginAlertModal}
+          title="Giriş Yap"
+          subtitle="Devam Etmek İçin Lütfen Giriş Yapın!"
+          buttonText="Giriş Yap"
+          buttonNavigateURL="/login"
+        />
       </MainContainer>
     </>
   );

@@ -21,60 +21,81 @@ const Footer = () => {
             Tek Uygulama Milyonlarca Randevu
           </h1>
         </div>
-        <div className="col-span-2 pl-28 flex flex-col items-center justify-center gap-2">
+        <div className="col-span-2 pl-28 flex flex-col items-center justify-start mt-10 gap-2">
           <h1 className="text-textColor font-bold underline underline-offset-2">
             Keşfet
           </h1>
           <div className="flex flex-col items-center gap-y-2">
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link to="/about" className="text-textColor font-semibold text-sm">
               Hakkımızda
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link to="/career" className="text-textColor font-semibold text-sm">
               Kariyer
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/contact"
+              className="text-textColor font-semibold text-sm"
+            >
               İletişim
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/social-responsibility"
+              className="text-textColor font-semibold text-sm"
+            >
               Sosyal Sorumluluk
             </Link>
           </div>
         </div>
-        <div className="col-span-2 flex flex-col items-center justify-center gap-2">
+        <div className="col-span-2 flex flex-col items-center justify-start mt-10 gap-2">
           <h1 className="text-textColor font-bold underline underline-offset-2">
             Yardım
           </h1>
           <div className="flex flex-col items-center gap-y-2">
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/asked-questions"
+              className="text-textColor font-semibold text-sm"
+            >
               Sık Sorulan Sorular
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/privacy-policy"
+              className="text-textColor font-semibold text-sm"
+            >
               Gizlilik Politikası
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link to="/kvkk" className="text-textColor font-semibold text-sm">
               KVKK
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/cookie-policy"
+              className="text-textColor font-semibold text-sm"
+            >
               Çerez Politikası
             </Link>
           </div>
         </div>
-        <div className="col-span-2 pr-28 flex flex-col items-center justify-center gap-2">
+        <div className="col-span-2 pr-28 flex flex-col items-center justify-start mt-10 gap-2">
           <h1 className="text-textColor font-bold underline underline-offset-2">
             İşletme
           </h1>
           <div className="flex flex-col items-center gap-y-2">
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <a
+              href="https://business.randevum.tech/register"
+              className="text-textColor font-semibold text-sm"
+            >
               Kayıt
-            </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            </a>
+            <Link
+              to="/business-policy"
+              className="text-textColor font-semibold text-sm"
+            >
               İşletme Politikası
             </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
+            <Link
+              to="/fees-and-pricing"
+              className="text-textColor font-semibold text-sm"
+            >
               Ücretler Ve Fiyatlar
-            </Link>
-            <Link to="#" className="text-textColor font-semibold text-sm">
-              ##BOŞ##
             </Link>
           </div>
         </div>
