@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 import { Header } from "../components/main";
 import { MainContainer } from "../components/main/UI";
@@ -6,6 +7,10 @@ import { MainContainer } from "../components/main/UI";
 //TODO:How To Works Yapılacak
 
 const HowToWorks = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
+  useEffect(() => {
+    axios.get(`${API_URL}/cookie`).then((res) => console.log(res.data));
+  }, []);
   return (
     <>
       <Header />

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../main";
 
 const Meets = () => {
+  const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem("token");
   const user = decodeToken(token);
@@ -36,7 +37,7 @@ const Meets = () => {
                   <h1 className="font-medium">{meet.clock}</h1>
                   <h1 className="font-medium">{meet.businessName}</h1>
                   <button
-                    onClick={() => alert(meet._id)}
+                    onClick={() => navigate(`/meet/${meet._id}`)}
                     className="border-2 border-borderAndOtherRed transition-colors duration-200 font-semibold hover:text-boxColor hover:bg-textColor hover:border-transparent px-2 py-1 mt-2 rounded-lg"
                   >
                     Detay

@@ -8,6 +8,7 @@ import {
   Home,
   HowToWorks,
   Login,
+  MeetDetails,
   NewPassword,
   PhoneNumberVerification,
   Register,
@@ -92,7 +93,10 @@ export const routes = [
     path: "/category/:categoryParams",
     element: <BusinessFilterByCategory />,
   },
-
+  {
+    path: "/meet/:meetID",
+    element: <MeetDetails />,
+  },
   //TODO:Footer Pages İçerikleri Yapılacak
   //Footer - Discover
   {
