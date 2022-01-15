@@ -74,3 +74,24 @@
 .ReactModal__Overlay--before-close {
     opacity: 0;
 }
+
+/* Scroll Bar */
+/* width */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-transparent
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-boxColor rounded-lg
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

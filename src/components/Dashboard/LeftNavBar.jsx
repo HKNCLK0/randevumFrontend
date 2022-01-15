@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { decodeToken } from "react-jwt";
 
 import { useNavigate } from "react-router-dom";
@@ -42,6 +42,12 @@ const LeftNavBar = ({ page }) => {
           )}
         </div>
         <div className="w-64 h-auto flex flex-col py-4 px-4 gap-4 bg-background rounded-lg">
+          <a
+            href="/"
+            className={`text-center text-textColor hover:bg-textColor hover:text-borderAndOtherRed transition-colors duration-300 font-semibold text-sm box-shadow bg-boxColor py-3 rounded-lg`}
+          >
+            Anasayfa
+          </a>
           <button
             onClick={() => navigate("/dashboard")}
             className={`${

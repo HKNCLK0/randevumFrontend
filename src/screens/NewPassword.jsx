@@ -4,7 +4,6 @@ import { Header, Modals, Error } from "../components/main";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/main/UI";
 
-//TODO:Modallarda Hata Veya Başarılı İconları Eklenecek
 const NewPassword = () => {
   const navigate = useNavigate();
 

@@ -1,16 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import axios from "axios";
+
+import { decodeToken } from "react-jwt";
+
+import { useSelector, useDispatch } from "react-redux";
+
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 
+import { setCounter } from "../../redux/Notifications";
+
 const Header = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.register.count);
+
   const token = sessionStorage.getItem("token");
+
+  const user = decodeToken(token);
+
+  const [data, setData] = useState([]);
+
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     window.location.reload();
   };
+
+  useEffect(() => {
+    if (token) {
+      axios.get(`${API_URL}/notifications/${user.id}`).then((res) => {
+        setData(res.data);
+        dispatch(setCounter(res.data.length));
+      });
+    } else return;
+  }, []);
   return (
     <header className="font-Montserrat">
       {/* Masaüstü */}
@@ -38,7 +66,7 @@ const Header = () => {
             </Link>
           </div>
           {token ? (
-            <div className="hidden md:flex w-2/12 lg:w-1/6 h-full font-Montserrat text-sm lg:text-base items-center lg:justify-start font-bold">
+            <div className="hidden md:flex relative w-2/12 lg:w-1/6 h-full font-Montserrat text-sm lg:text-base items-center lg:justify-start font-bold">
               <Link
                 to="/dashboard"
                 className="flex flex-row items-center gap-2"
@@ -49,6 +77,15 @@ const Header = () => {
                   src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/user.png?alt=media&token=ecf39dbd-d5f3-43ee-9426-5885b757d857"
                 />
                 <h1 className="text-primary-bir">Hesabım</h1>
+                {count == 0 ? null : (
+                  <div
+                    className={`${
+                      count === 0 ? "hidden" : ""
+                    } w-6 h-6 left-28 flex items-center justify-center border-2 border-borderAndOtherRed absolute rounded-full`}
+                  >
+                    <h1 className="text-textColor text-xs">{count}</h1>
+                  </div>
+                )}
               </Link>
             </div>
           ) : (
