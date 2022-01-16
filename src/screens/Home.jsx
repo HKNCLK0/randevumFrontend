@@ -6,6 +6,7 @@ import {
   Category,
   HowToWorks,
   MobileAppBanner,
+  RecommendedBusiness,
 } from "../components/Home";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <div className="container mx-auto mt-8 flex flex-col gap-10">
         <Category />
         <HowToWorks />
+        <RecommendedBusiness />
         <MobileAppBanner />
       </div>
       <Footer />
