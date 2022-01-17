@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Header, Error, Loader } from "../components/main";
+import { Header, Error } from "../components/main";
 
 import {
   BusinessCard,
