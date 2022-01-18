@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Header, Modals } from "../components/main";
+import { Header } from "../components/main";
+import SuccessModal from "../components/main/Modals/SuccessModal";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -52,22 +53,14 @@ const ForgotPassword = () => {
             Gönder
           </button>
         </div>
-        <Modals isOpen={modalIsOpen} setIsOpen={setIsOpen}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">
-              Şifre Sıfırlama
-            </h1>
-            <h1 className="text-textColor font-semibold text-md">
-              Şifre Yenileme Bağlantısı Gönderildi.
-            </h1>
-          </div>
-          <button
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-            onClick={() => navigate("/login")}
-          >
-            Tamam
-          </button>
-        </Modals>
+        <SuccessModal
+          title="Şifre Sıfırlama"
+          subtitle="Şifre Yenileme Bağlantısı Gönderildi."
+          isOpen={modalIsOpen}
+          setIsOpen={setIsOpen}
+          buttonText="Tamam"
+          buttonNavigateURL="/login"
+        />
       </main>
     </>
   );

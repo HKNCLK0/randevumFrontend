@@ -1,14 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
-import { useNavigate } from "react-router-dom";
-import { Header, Error, Success, Modals } from "../components/main";
+import { Header, Error, Success } from "../components/main";
+import SuccessModal from "../components/main/Modals/SuccessModal";
 import { MainContainer, Button } from "../components/main/UI";
 
 const PhoneNumberVerification = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-
-  const navigate = useNavigate();
 
   const token = sessionStorage.getItem("token");
   const decodedToken = decodeToken(token);
@@ -25,7 +23,7 @@ const PhoneNumberVerification = () => {
       .post(`${API_URL}/auth/verify-phone-number`, {
         userID: decodedToken.id,
       })
-      .then((res) => setSuccess(true));
+      .then(() => setSuccess(true));
   }, []);
   const handleSubmit = () => {
     axios
@@ -33,7 +31,7 @@ const PhoneNumberVerification = () => {
         smsCode,
         userID: decodedToken.id,
       })
-      .then((res) => setIsOpen(true))
+      .then(() => setIsOpen(true))
       .catch((err) => {
         setError(true);
         setErrorMessage(err.response.data);
@@ -62,22 +60,14 @@ const PhoneNumberVerification = () => {
             Gönder
           </Button>
         </div>
-        <Modals isOpen={modalIsOpen} setIsOpen={setIsOpen}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">
-              Telefon Numarası Doğrulama
-            </h1>
-            <h1 className="text-textColor font-semibold text-md">
-              Telefon Numarası Başarıyla Doğrulandı
-            </h1>
-          </div>
-          <button
-            onClick={() => navigate("/")}
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-          >
-            Tamam
-          </button>
-        </Modals>
+        <SuccessModal
+          isOpen={modalIsOpen}
+          setIsOpen={setIsOpen}
+          title="Telefon Numarası Doğrulama"
+          subtitle="Telefon Numarası Başarıyla Doğrulandı"
+          buttonText="Tamam"
+          buttonNavigateURL="/"
+        />
       </MainContainer>
     </>
   );

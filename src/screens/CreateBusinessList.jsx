@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Footer, Header, Loader } from "../components/main";
 import { MainContainer } from "../components/main/UI";
 
+//TODO:Arama Sonucu Bulunamadı Yapılacak
+
 const CreateBusinessList = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const CreateBusinessList = () => {
   const [data, setData] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResponse, setSearchResponse] = useState(true);
 
   useEffect(() => {
     axios.get(`${API_URL}/businesses`).then((res) => setData(res.data));
@@ -28,7 +31,6 @@ const CreateBusinessList = () => {
             </p>
           </div>
           <div className="w-full flex justify-center gap-16">
-            <div className="w-1/4" />
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -37,7 +39,7 @@ const CreateBusinessList = () => {
               placeholder="Ara"
             />
             {/* Sıralama Ölçütü */}
-            <div className="w-1/4 flex">
+            {/*<div className="w-1/4 flex">
               <select className="flex items-center border-2 bg-transparent text-textColor px-4 py-2 text-sm font-semibold rounded-lg">
                 <option className="text-gray-400" value="">
                   Sıralama Ölçütü
@@ -55,7 +57,7 @@ const CreateBusinessList = () => {
                   Z-A Sırala
                 </option>
               </select>
-            </div>
+            </div> */}
           </div>
           {/* Search Bar */}
           {data.length > 0 ? (

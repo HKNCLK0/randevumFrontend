@@ -18,7 +18,7 @@ const Home = () => {
       <div className="container mx-auto mt-8 flex flex-col gap-10">
         <Category />
         <HowToWorks />
-        <RecommendedBusiness />
+        {/*<RecommendedBusiness />*/}
         <MobileAppBanner />
       </div>
       <Footer />

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Header, Modals, Error } from "../components/main";
+import { Header, Error } from "../components/main";
+import SuccessModal from "../components/main/Modals/SuccessModal";
+import NotAuthModal from "../components/main/Modals/NotAuthModal";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/main/UI";
 
@@ -77,38 +79,23 @@ const NewPassword = () => {
           </Button>
         </div>
         {/* ErrorModal */}
-        <Modals isOpen={errorModal} setIsOpen={setErrorModal}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">
-              Hatalı Sıfırlama Linki
-            </h1>
-            <h1 className="text-textColor font-semibold text-md">
-              Lütfen Şifre Sıfırlama Bağlantınızı Kontrol Edin!
-            </h1>
-          </div>
-          <button
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-            onClick={() => navigate("/login")}
-          >
-            Tamam
-          </button>
-        </Modals>
-
+        <NotAuthModal
+          isOpen={errorModal}
+          setIsOpen={setErrorModal}
+          title="Hatalı Sıfırlama Linki"
+          subtitle="Lütfen Şifre Sıfırlama Bağlantınızı Kontrol Edin!"
+          buttonText="Tamam"
+          buttonNavigateURL="/login"
+        />
         {/* SuccessModal */}
-        <Modals isOpen={successModal} setIsOpen={setSuccessModal}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">Başarılı</h1>
-            <h1 className="text-textColor font-semibold text-md">
-              Şifre Sıfırlama İşleminiz Başarıyla Gerçekleşti
-            </h1>
-          </div>
-          <button
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-            onClick={() => navigate("/login")}
-          >
-            Giriş Yap
-          </button>
-        </Modals>
+        <SuccessModal
+          isOpen={successModal}
+          setIsOpen={setSuccessModal}
+          title="Başarılı"
+          subtitle="Şifre Sıfırlama İşleminiz Başarıyla Gerçekleşti!"
+          buttonText="Giriş Yap"
+          buttonNavigateURL="/login"
+        />
       </main>
     </>
   );

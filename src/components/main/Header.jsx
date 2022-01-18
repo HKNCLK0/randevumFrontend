@@ -58,9 +58,9 @@ const Header = () => {
             <Link to="/nasil-calisir">
               <h1>Nasıl Çalışır?</h1>
             </Link>
-            <Link to="/businesses">
+            {/*<Link to="/businesses">
               <h1>İşletmeler</h1>
-            </Link>
+            </Link>*/}
             <Link to="/create">
               <h1>Oluştur</h1>
             </Link>
@@ -142,12 +142,12 @@ const Header = () => {
         >
           Nasıl Çalışır?
         </Link>
-        <Link
+        {/*<Link
           to="/businesses"
           className="w-1/2 text-textColor px-2 py-3 text-sm font-semibold flex items-center justify-center rounded-lg bg-boxColor"
         >
           İşletmeler
-        </Link>
+        </Link>*/}
         <Link
           to="/create"
           className="w-1/2 text-textColor px-2 py-3 text-sm font-semibold flex items-center justify-center rounded-lg bg-boxColor"

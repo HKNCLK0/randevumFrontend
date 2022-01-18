@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Header, Error, Success, Modals } from "../components/main";
+import { Header, Error, Success } from "../components/main";
+import SuccessModal from "../components/main/Modals/SuccessModal";
 import { Button, MainContainer } from "../components/main/UI";
 import axios from "axios";
 
@@ -69,22 +70,14 @@ const EmailVerification = () => {
             Gönder
           </Button>
         </div>
-        <Modals isOpen={modalIsOpen} setIsOpen={setIsOpen}>
-          <div className="font-Montserrat flex flex-col items-center gap-6 text-center">
-            <h1 className="text-textColor font-bold text-xl">
-              E-Posta Doğrulama
-            </h1>
-            <h1 className="text-textColor font-semibold text-md">
-              E-Posta Adresiniz Başarıyla Doğrulandı
-            </h1>
-          </div>
-          <button
-            onClick={() => navigate("/register/phone-verification")}
-            className="text-textColor font-Montserrat font-medium text-base border-2 px-6 rounded-lg border-borderAndOtherRed hover:border-transparent transition-colors hover:text-boxColor hover:bg-textColor py-2"
-          >
-            Devam Et
-          </button>
-        </Modals>
+        <SuccessModal
+          title="E-Posta Doğrulama"
+          subtitle="E-Posta Adresiniz Başarıyla Doğrulandı"
+          isOpen={modalIsOpen}
+          setIsOpen={setIsOpen}
+          buttonText="Devam Et"
+          buttonNavigateURL="/register/phone-verification"
+        />
       </MainContainer>
     </>
   );

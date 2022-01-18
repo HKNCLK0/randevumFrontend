@@ -37,11 +37,11 @@ const Register = () => {
     if (firstPassword === secondPassword) {
       axios
         .post(`${API_URL}/auth/register`, {
-          name,
-          surname,
-          email,
-          password: firstPassword,
-          phone,
+          userName: name,
+          userSurname: surname,
+          userEmail: email,
+          userPassword: firstPassword,
+          userPhone: phone,
           KVKK,
           announcement,
         })
