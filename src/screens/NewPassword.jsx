@@ -3,12 +3,10 @@ import React, { useState, useEffect } from "react";
 import { Header, Error } from "../components/main";
 import SuccessModal from "../components/main/Modals/SuccessModal";
 import NotAuthModal from "../components/main/Modals/NotAuthModal";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "../components/main/UI";
 
 const NewPassword = () => {
-  const navigate = useNavigate();
-
   const API_URL = process.env.REACT_APP_API_URL;
 
   const [firstPassword, setFirstPassword] = useState("");

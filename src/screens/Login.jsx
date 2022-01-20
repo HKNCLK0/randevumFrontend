@@ -7,6 +7,7 @@ import {
   Button,
   Input,
   MainContainer,
+  Box,
 } from "../components/main/UI";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -31,8 +32,8 @@ const Login = () => {
   const handleLogin = () => {
     axios
       .post(`${API_URL}/auth/login`, {
-        email,
-        password,
+        userEmail: email,
+        userPassword: password,
       })
       .then((res) => {
         sessionStorage.setItem("token", res.data.user.token);
@@ -53,7 +54,7 @@ const Login = () => {
     <>
       <Header />
       <MainContainer>
-        <div className="w-4/5 md:w-1/4 flex flex-col gap-4 items-center bg-boxColor box-shadow py-8 rounded-lg">
+        <Box className="w-4/5 md:w-1/4">
           <h1 className="font-bold text-xl text-textColor">Giriş Yap</h1>
           <Error error={error}>E-Posta veya Şifre Hatalı</Error>
           <div className="w-full flex flex-col items-center gap-4">
@@ -87,7 +88,7 @@ const Login = () => {
           >
             Şifremi Unuttum
           </Link>
-        </div>
+        </Box>
         <BusinessCard href="https://business.randevum.tech/login">
           İşletme Girişi İçin Tıklayınız
         </BusinessCard>

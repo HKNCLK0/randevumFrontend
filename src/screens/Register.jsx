@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header, Error } from "../components/main";
 import {
+  Box,
   BusinessCard,
   Button,
   Input,
@@ -59,7 +60,7 @@ const Register = () => {
     <>
       <Header />
       <MainContainer>
-        <div className="w-5/6 md:w-1/3 flex flex-col gap-4 items-center bg-boxColor box-shadow py-8 rounded-lg">
+        <Box className="w-5/6 md:w-1/3">
           <h1 className="font-bold text-xl text-textColor">Kayıt Ol</h1>
           <Error error={error}>{errorMessage}</Error>
           <div className="w-full flex flex-col items-center gap-4">
@@ -149,7 +150,7 @@ const Register = () => {
           >
             Kayıt Ol
           </Button>
-        </div>
+        </Box>
         <BusinessCard href="https://business.randevum.tech/register">
           İşletme Kaydı İçin Tıklayınız
         </BusinessCard>
