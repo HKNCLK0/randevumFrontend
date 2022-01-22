@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
-//TODO:Linklerin Sayfaları Yapılacak
-
 const Footer = () => {
   const date = new Date();
   const yil = date.getFullYear();

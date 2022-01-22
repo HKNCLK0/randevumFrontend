@@ -14,7 +14,7 @@ import {
   Register,
 } from "./screens";
 
-import { Meets, Notifications, Calendar } from "./screens/DashboardPages";
+import { Meets, Notifications } from "./screens/DashboardPages";
 
 import {
   About,
@@ -72,10 +72,6 @@ export const routes = [
   {
     path: "/dashboard/notifications",
     element: <Notifications />,
-  },
-  {
-    path: "/dashboard/calendar",
-    element: <Calendar />,
   },
   {
     path: "/create",

@@ -79,14 +79,6 @@ const LeftNavBar = ({ page }) => {
               <h1 className="text-textColor text-xs">{count}</h1>
             </div>
           </button>
-          <button
-            onClick={() => navigate("/dashboard/calendar")}
-            className={`${
-              page === "calendar" ? "text-textColor" : "text-gray-400"
-            } text-center font-semibold text-sm box-shadow bg-boxColor py-3 rounded-lg`}
-          >
-            Takvim
-          </button>
         </div>
         <button
           onClick={() => navigate("/create")}

@@ -16,15 +16,17 @@ const MobileAppBanner = () => {
             </p>
           </div>
           <div className="flex flex-row items-center justify-evenly">
-            <a href="#" className="transform transition hover:scale-105">
+            {/*<a href="#" className="transform transition hover:scale-105">
               <img className="" src={AppStore} />
             </a>
             <a href="#" className="transform transition hover:scale-105">
               <img className="" src={PlayStore} />
-            </a>
+              </a>*/}
+            <h1 className="text-2xl font-extrabold">Çok Yakında</h1>
           </div>
         </div>
         <div className="w-px mx-16 h-4/5 rounded-lg bg-gray-300" />
+        {/* TODO:App Resim Yapılacak */}
         <div>App Resim</div>
       </div>
       <div className="flex md:hidden">

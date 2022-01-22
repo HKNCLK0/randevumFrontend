@@ -11,6 +11,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//TODO:User Image Ekleme Yapılacak
+
 const Register = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();

@@ -7,6 +7,7 @@ import {
   HowToWorks,
   MobileAppBanner,
   RecommendedBusiness,
+  Cookie,
 } from "../components/Home";
 
 const Home = () => {
@@ -22,6 +23,9 @@ const Home = () => {
         <MobileAppBanner />
       </div>
       <Footer />
+      <div className="w-full flex justify-center">
+        <Cookie />
+      </div>
     </>
   );
 };
