@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Error, Header, Loader, Modals } from "../components/main";
-import { Button, MainContainer } from "../components/main/UI";
+import { Box, Button, MainContainer } from "../components/main/UI";
 
 import StarRatings from "react-star-ratings";
 import { decodeToken } from "react-jwt";
@@ -60,7 +60,7 @@ const Create = () => {
     <>
       <Header />
       <MainContainer>
-        <div className="w-11/12 md:w-4/5 flex flex-col gap-4 items-center bg-boxColor box-shadow py-8 rounded-lg">
+        <Box className="w-11/12 md:w-4/5">
           <h1 className="font-bold text-xl text-textColor">Oluştur</h1>
           <Error error={error}>{errorMessage}</Error>
           <div className="flex flex-col md:flex-row gap-8 md:gap-x-12 w-full px-4 md:px-16">
@@ -160,7 +160,11 @@ const Create = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Box>
+        {/* TODO:Yorum Ekleme Yapılacak */}
+        <Box className="w-11/12 md:w-4/5">
+          <h1 className="font-bold text-xl text-textColor">Oluştur</h1>
+        </Box>
         <SuccessModal
           isOpen={modalIsOpen}
           setIsOpen={setIsOpen}
