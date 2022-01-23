@@ -1,17 +1,21 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-import { Error, Header, Loader, Modals } from "../components/main";
+import { Error, Header, Loader } from "../components/main";
 import { Box, Button, MainContainer } from "../components/main/UI";
 
 import StarRatings from "react-star-ratings";
+
 import { decodeToken } from "react-jwt";
 
 import SuccessModal from "../components/main/Modals/SuccessModal";
 import NotAuthModal from "../components/main/Modals/NotAuthModal";
+import Comment from "../components/Create/Comment";
 
 //BUG:Mobilde Seçilen İptal Edilirken Görsel Problem Var
+//TODO:Giriş Yapmadan Saatler Ve Doluluk Görünecek Ama Seçim Yapılamayacak
+//TODO:İl Numaraları İsimlerle Değişecek
 
 const Create = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -61,7 +65,7 @@ const Create = () => {
       <Header />
       <MainContainer>
         <Box className="w-11/12 md:w-4/5">
-          <h1 className="font-bold text-xl text-textColor">Oluştur</h1>
+          <h1 className="font-bold md:text-xl text-textColor">Oluştur</h1>
           <Error error={error}>{errorMessage}</Error>
           <div className="flex flex-col md:flex-row gap-8 md:gap-x-12 w-full px-4 md:px-16">
             <img
@@ -162,8 +166,11 @@ const Create = () => {
           </div>
         </Box>
         {/* TODO:Yorum Ekleme Yapılacak */}
-        <Box className="w-11/12 md:w-4/5">
-          <h1 className="font-bold text-xl text-textColor">Oluştur</h1>
+        <Box className="w-11/12 md:w-4/5 md:px-32 px-6">
+          <h1 className="font-bold md:text-xl text-textColor">
+            Değerlendirmeler
+          </h1>
+          <Comment businessID={businessID} />
         </Box>
         <SuccessModal
           isOpen={modalIsOpen}

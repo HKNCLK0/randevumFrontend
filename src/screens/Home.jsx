@@ -23,9 +23,9 @@ const Home = () => {
         <MobileAppBanner />
       </div>
       <Footer />
-      <div className="w-full flex justify-center">
+      {/*<div className="w-full flex justify-center">
         <Cookie />
-      </div>
+      </div>*/}
     </>
   );
 };

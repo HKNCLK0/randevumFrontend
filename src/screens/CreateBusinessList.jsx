@@ -14,7 +14,6 @@ const CreateBusinessList = () => {
   const [data, setData] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResponse, setSearchResponse] = useState(true);
 
   useEffect(() => {
     axios.get(`${API_URL}/businesses`).then((res) => setData(res.data));
