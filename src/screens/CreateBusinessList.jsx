@@ -34,7 +34,7 @@ const CreateBusinessList = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               type="text"
-              className="w-1/2 py-2 rounded-lg outline-none px-2 font-semibold text-sm border-2 border-transparent transition-colors duration-300 focus:border-borderAndOtherRed"
+              className="w-3/4 md:w-1/2 py-2 rounded-lg outline-none px-2 font-semibold text-sm border-2 border-transparent transition-colors duration-300 focus:border-borderAndOtherRed"
               placeholder="Ara"
             />
             {/* Sıralama Ölçütü */}

@@ -84,18 +84,6 @@ const Create = () => {
                 {data.businessAddress} <br /> {data.businessIlce} /{" "}
                 {data.businessCountry}
               </p>
-              {/* <div className="flex gap-x-1 pt-8 items-center">
-                <StarRatings
-                  rating={3.4}
-                  starSpacing="1px"
-                  starDimension="20px"
-                  starRatedColor="#ff4757"
-                  numberOfStars={5}
-                />
-                <h1 className="text-textColor pt-1 font-semibold text-xs">
-                  ({data.businessPoint})
-                </h1>
-              </div> */}
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-textColor font-semibold text-sm">

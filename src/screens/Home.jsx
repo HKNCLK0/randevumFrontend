@@ -12,6 +12,7 @@ import {
 
 const Home = () => {
   const token = sessionStorage.getItem("token");
+
   return (
     <>
       <Header />
