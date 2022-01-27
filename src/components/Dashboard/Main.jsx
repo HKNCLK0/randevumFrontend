@@ -2,7 +2,7 @@ import React from "react";
 
 const Main = (props) => {
   return (
-    <main className="flex flex-col w-5/6 items-center py-16">
+    <main className={`${props.className} flex flex-col items-center py-16`}>
       {props.children}
     </main>
   );

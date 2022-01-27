@@ -155,6 +155,27 @@ const Header = () => {
           Oluştur
         </Link>
         {token ? (
+          <span className="flex justify-center items-center w-full">
+            <Link
+              to="/dashboard"
+              className="w-1/2 text-textColor px-2 py-3 text-sm font-semibold flex items-center justify-center rounded-lg bg-boxColor"
+            >
+              Hesabım
+            </Link>
+            {count == 0 ? null : (
+              <div
+                className={`${
+                  count === 0 ? "hidden" : ""
+                } w-6 h-6 right-28 flex items-center justify-center border-2 border-borderAndOtherRed absolute rounded-full`}
+              >
+                <h1 className="text-textColor text-xs">{count}</h1>
+              </div>
+            )}
+          </span>
+        ) : (
+          ""
+        )}
+        {token ? (
           <button
             onClick={() => handleLogout()}
             className="w-1/2 text-textColor px-2 py-3 text-sm font-bold flex items-center justify-center rounded-lg bg-boxColor"

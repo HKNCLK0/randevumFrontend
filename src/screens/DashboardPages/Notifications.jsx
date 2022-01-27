@@ -14,6 +14,7 @@ import { Error, Loader, Success } from "../../components/main";
 
 const Notifications = () => {
   const API_URL = process.env.REACT_APP_API_URL;
+
   const token = sessionStorage.getItem("token");
   const user = decodeToken(token);
 
@@ -53,42 +54,85 @@ const Notifications = () => {
   };
 
   return (
-    <div className="flex justify-between font-Montserrat">
-      <LeftNavBar page="notifications" />
-      <Main>
-        <Box className="px-20 gap-3">
-          <h1 className="text-textColor font-bold text-xl">Bildirimler</h1>
-          <Success success={success}>Bildirim Başarıyla Silindi</Success>
-          <Error error={error}>
-            Bir Hata Oluştu Lütfen Daha Sonra Tekrar Deneyin
-          </Error>
-          {loading ? (
-            <Loader />
-          ) : data.length === 0 ? (
-            <h1 className="text-textColor font-semibold">Bildirim Yok</h1>
-          ) : (
-            data.map((notification, index) => (
-              <div
-                className="bg-background flex items-center justify-between w-full rounded-lg box-shadow px-4 py-3 text-textColor"
-                key={index}
-              >
-                <span className="flex">
-                  <BsDot size={24} />
-                  <h1 className="font-medium text-sm pt-0.5">
-                    {notification.message}
-                  </h1>
-                </span>
-                <button
-                  onClick={(e) => handleDelete({ e, notification })}
-                  className="text-textColor transition-colors duration-200 hover:text-borderAndOtherRed"
+    <div className="font-Montserrat">
+      {/* Desktop */}
+      <div className="hidden md:flex justify-between">
+        <LeftNavBar page="notifications" />
+        <Main className="w-5/6">
+          <Box className="w-5/6 px-20 gap-3">
+            <h1 className="text-textColor font-bold text-xl">Bildirimler</h1>
+            <Success success={success}>Bildirim Başarıyla Silindi</Success>
+            <Error error={error}>
+              Bir Hata Oluştu Lütfen Daha Sonra Tekrar Deneyin
+            </Error>
+            {loading ? (
+              <Loader />
+            ) : data.length === 0 ? (
+              <h1 className="text-textColor font-semibold">Bildirim Yok</h1>
+            ) : (
+              data.map((notification, index) => (
+                <div
+                  className="bg-background flex items-center justify-between w-full rounded-lg box-shadow px-4 py-3 text-textColor"
+                  key={index}
                 >
-                  <MdDeleteOutline size={24} />
-                </button>
-              </div>
-            ))
-          )}
-        </Box>
-      </Main>
+                  <span className="flex">
+                    <BsDot size={24} />
+                    <h1 className="font-medium text-sm pt-0.5">
+                      {notification.message}
+                    </h1>
+                  </span>
+                  <button
+                    onClick={(e) => handleDelete({ e, notification })}
+                    className="text-textColor transition-colors duration-200 hover:text-borderAndOtherRed"
+                  >
+                    <MdDeleteOutline size={24} />
+                  </button>
+                </div>
+              ))
+            )}
+          </Box>
+        </Main>
+      </div>
+      {/* Mobile */}
+      <div className="flex flex-col items-center md:hidden">
+        <div className="w-full">
+          <LeftNavBar page="notifications" />
+        </div>
+        <Main className="w-11/12">
+          <Box className="w-11/12 gap-3 px-4">
+            <h1 className="text-textColor font-bold text-xl">Bildirimler</h1>
+            <Success success={success}>Bildirim Başarıyla Silindi</Success>
+            <Error error={error}>
+              Bir Hata Oluştu Lütfen Daha Sonra Tekrar Deneyin
+            </Error>
+            {loading ? (
+              <Loader />
+            ) : data.length === 0 ? (
+              <h1 className="text-textColor font-semibold">Bildirim Yok</h1>
+            ) : (
+              data.map((notification, index) => (
+                <div
+                  className="bg-background flex items-center justify-between w-full rounded-lg box-shadow px-4 py-3 text-textColor"
+                  key={index}
+                >
+                  <span className="flex">
+                    <BsDot size={24} />
+                    <h1 className="font-medium text-sm pt-0.5">
+                      {notification.message}
+                    </h1>
+                  </span>
+                  <button
+                    onClick={(e) => handleDelete({ e, notification })}
+                    className="text-textColor transition-colors duration-200 hover:text-borderAndOtherRed"
+                  >
+                    <MdDeleteOutline size={24} />
+                  </button>
+                </div>
+              ))
+            )}
+          </Box>
+        </Main>
+      </div>
     </div>
   );
 };
