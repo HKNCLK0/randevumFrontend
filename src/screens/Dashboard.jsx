@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 import { LeftNavBar, Main, Box } from "../components/Dashboard";
-import { Error } from "../components/main";
+import { Error, Footer, TextFooter } from "../components/main";
 import { Input } from "../components/main/UI";
 
 //TODO:Kullanıcı Bilgisi Düzenleme Yapılacak
@@ -27,7 +27,7 @@ const Dashboard = () => {
       {/* Desktop */}
       <div className="hidden md:flex justify-between">
         <LeftNavBar page="ana" />
-        <Main className="w-5/6">
+        <Main className="w-5/6 justify-between">
           <Box className="w-5/6">
             <h1 className="text-textColor font-bold text-xl">
               Kişisel Bilgiler
@@ -54,6 +54,7 @@ const Dashboard = () => {
               ""
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
       {/* Mobile */}
@@ -61,8 +62,8 @@ const Dashboard = () => {
         <div className="w-full">
           <LeftNavBar page="ana" />
         </div>
-        <Main className="w-11/12 py-20">
-          <Box className="w-full">
+        <Main className="w-11/12 pt-20 h-[600px] pb-0 justify-between bg-red-400">
+          <Box className="w-11/12">
             <h1 className="text-textColor font-bold text-xl">
               Kişisel Bilgiler
             </h1>
@@ -70,7 +71,7 @@ const Dashboard = () => {
               Bir Hata Oluştu Lütfen Daha Sonra Tekrar Deneyin
             </Error>
             {user ? (
-              <div className="flex gap-4">
+              <div className="flex flex-col gap-4">
                 <Input
                   inputType="text"
                   placeholder="İsim"
@@ -88,6 +89,7 @@ const Dashboard = () => {
               ""
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
     </div>

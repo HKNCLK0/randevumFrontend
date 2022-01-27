@@ -10,7 +10,7 @@ import { LeftNavBar, Main, Box } from "../../components/Dashboard";
 
 import { setCounter } from "../../redux/Notifications";
 
-import { Error, Loader, Success } from "../../components/main";
+import { Error, Loader, Success, TextFooter } from "../../components/main";
 
 const Notifications = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -58,7 +58,7 @@ const Notifications = () => {
       {/* Desktop */}
       <div className="hidden md:flex justify-between">
         <LeftNavBar page="notifications" />
-        <Main className="w-5/6">
+        <Main className="w-5/6 justify-between">
           <Box className="w-5/6 px-20 gap-3">
             <h1 className="text-textColor font-bold text-xl">Bildirimler</h1>
             <Success success={success}>Bildirim Başarıyla Silindi</Success>
@@ -91,6 +91,7 @@ const Notifications = () => {
               ))
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
       {/* Mobile */}
@@ -98,7 +99,7 @@ const Notifications = () => {
         <div className="w-full">
           <LeftNavBar page="notifications" />
         </div>
-        <Main className="w-11/12">
+        <Main className="w-11/12 pt-20 h-[600px] pb-0 justify-between">
           <Box className="w-11/12 gap-3 px-4">
             <h1 className="text-textColor font-bold text-xl">Bildirimler</h1>
             <Success success={success}>Bildirim Başarıyla Silindi</Success>
@@ -131,6 +132,7 @@ const Notifications = () => {
               ))
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
     </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
 import { LeftNavBar, Main, Box } from "../../components/Dashboard";
-import { Error, Loader } from "../../components/main";
+import { Error, Loader, TextFooter } from "../../components/main";
 import { Link } from "react-router-dom";
 
 const Meets = () => {
@@ -27,7 +27,7 @@ const Meets = () => {
       {/* Desktop */}
       <div className="hidden md:flex justify-between">
         <LeftNavBar page="meets" />
-        <Main className="w-5/6">
+        <Main className="w-5/6 justify-between">
           <Box className="w-5/6">
             <h1 className="text-textColor font-bold text-xl">Randevularım</h1>
             <Error error={error}>
@@ -74,6 +74,7 @@ const Meets = () => {
               </div>
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
       {/* Mobile */}
@@ -81,7 +82,7 @@ const Meets = () => {
         <div className="w-full">
           <LeftNavBar page="meets" />
         </div>
-        <Main className="w-11/12">
+        <Main className="w-11/12 pt-20 h-[600px] pb-0 justify-between">
           <Box className="w-11/12">
             <h1 className="text-textColor font-bold text-xl">Randevularım</h1>
             <Error error={error}>
@@ -128,6 +129,7 @@ const Meets = () => {
               </div>
             )}
           </Box>
+          <TextFooter />
         </Main>
       </div>
     </div>
