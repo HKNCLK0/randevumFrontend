@@ -12,8 +12,6 @@ import { useCookies } from "react-cookie";
 
 const HowToWorks = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const dispathc = useDispatch();
-  const user = useSelector((state) => state.userData);
 
   const [cookies, setCookie] = useCookies(["jwtToken"]);
 
