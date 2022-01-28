@@ -40,7 +40,7 @@ const LeftNavBar = ({ page }) => {
           <div className="flex w-64 h-44 flex-col items-center justify-center gap-4 bg-background rounded-lg box-shadow">
             <img
               alt="userProfilePicture"
-              src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/fusion_red.png?alt=media&token=3bb6b159-116e-4f0c-969c-d22c72b1ef6c"
+              src={user.userProfilePicture}
               className="w-24 h-24 outline outline-2 transition-all outline-offset-4 hover:outline-offset-8 outline-textColor rounded-full"
             />
             {user ? (
