@@ -15,15 +15,13 @@ const HowToWorks = () => {
 
   const [cookies, setCookie] = useCookies(["jwtToken"]);
 
-  console.log(cookies.jwtToken);
-
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTk3OTc5ODY1OTczZTdjMDVlMWIxYiIsInVzZXJFbWFpbCI6ImNlbGlraGFrYW41MjU1QGdtYWlsLmNvbSIsInVzZXJOYW1lIjoiSGFrYW4iLCJ1c2VyU3VybmFtZSI6IkNlbGlrIiwidXNlclBob25lIjoiKzkwNTQ2Nzg0NTc2MCIsInVzZXJFbWFpbFZlcmlmaWNhdGlvbiI6dHJ1ZSwidXNlclBob25lVmVyaWZpY2F0aW9uIjp0cnVlLCJ1c2VyUHJvZmlsZVBpY3R1cmUiOiJodHRwczovL3VwbG9hZC53aWtpbWVkaWEub3JnL3dpa2lwZWRpYS9jb21tb25zLzkvOTkvU2FtcGxlX1VzZXJfSWNvbi5wbmciLCJpYXQiOjE2NDMzNjcxNTksImV4cCI6MTY0MzM2ODk1OX0.QYf4--v_D5wN2I3oSVePgJoGAPtTef_ukK5Xj-BVK9w";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTk3OTc5ODY1OTczZTdjMDVlMWIxYiIsInVzZXJFbWFpbCI6ImNlbGlraGFrYW41MjU1QGdtYWlsLmNvbSIsInVzZXJOYW1lIjoiSGFrYW4iLCJ1c2VyU3VybmFtZSI6IkNlbGlrIiwidXNlclBob25lIjoiKzkwNTQ2Nzg0NTc2MCIsInVzZXJFbWFpbFZlcmlmaWNhdGlvbiI6dHJ1ZSwidXNlclBob25lVmVyaWZpY2F0aW9uIjp0cnVlLCJ1c2VyUHJvZmlsZVBpY3R1cmUiOiJodHRwczovL3VwbG9hZC53aWtpbWVkaWEub3JnL3dpa2lwZWRpYS9jb21tb25zLzkvOTkvU2FtcGxlX1VzZXJfSWNvbi5wbmciLCJpYXQiOjE2NDMzNzQwNjUsImV4cCI6MTY0MzM3NTg2NX0.-KMTzOGVwfElkncI1wXwsOXL-kTi1k34NPuSpnIg1WI";
   const handleClick = () => {
     axios
       .get(`${API_URL}/deneme/data`, {
         headers: {
-          Authorization: "Bearer " + cookies.jwtToken,
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => setCookie("jwtToken", res.data));
