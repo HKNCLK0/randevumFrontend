@@ -31,11 +31,13 @@ const Meets = () => {
               {data.map((meet) => (
                 <div
                   key={meet._id}
-                  className="w-[100px] h-32 flex flex-col text-sm items-center justify-center border-2 rounded-lg cart-shadow"
+                  className="w-[100px] h-36 flex flex-col text-sm items-center justify-center border-2 rounded-lg cart-shadow"
                 >
-                  <h1 className="font-medium">{meet.date}</h1>
+                  <h1 className="font-medium text-center">{meet.date}</h1>
                   <h1 className="font-medium">{meet.clock}</h1>
-                  <h1 className="font-medium">{meet.businessName}</h1>
+                  <h1 className="font-medium text-center">
+                    {meet.businessName}
+                  </h1>
                   <button
                     onClick={() => navigate(`/meet/${meet._id}`)}
                     className="border-2 border-borderAndOtherRed transition-colors duration-200 font-semibold hover:text-boxColor hover:bg-textColor hover:border-transparent px-2 py-1 mt-2 rounded-lg"

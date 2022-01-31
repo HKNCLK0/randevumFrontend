@@ -12,8 +12,6 @@ import {
 
 import { Link, useNavigate } from "react-router-dom";
 
-import { useCookies } from "react-cookie";
-
 const Login = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -23,8 +21,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(false);
-
-  const [cookies, setSetCookie] = useCookies(["userToken"]);
 
   useEffect(() => {
     document.getElementById("emailInput").focus();

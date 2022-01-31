@@ -1,12 +1,12 @@
+import React from "react";
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setData } from "../redux/UserData";
 
 import { Header } from "../components/main";
-import { Button, MainContainer } from "../components/main/UI";
+import { MainContainer } from "../components/main/UI";
 
 import { useCookies } from "react-cookie";
+
+import moment from "moment";
 
 //TODO:How To Works Yapılacak
 
@@ -26,6 +26,23 @@ const HowToWorks = () => {
       })
       .then((res) => setCookie("jwtToken", res.data));
   };
+
+  function getCurrentWeek() {
+    var currentDate = moment();
+
+    var weekStart = currentDate.clone().startOf("isoWeek");
+    var weekEnd = currentDate.clone().endOf("isoWeek");
+
+    var days = [];
+
+    for (var i = 0; i <= 6; i++) {
+      days.push(moment(weekStart).add(i, "days").format("dddd"));
+    }
+  }
+  getCurrentWeek();
+
+  //dayss.map((day) => console.log(day));
+
   return (
     <>
       <Header />
@@ -36,7 +53,7 @@ const HowToWorks = () => {
             <h1 className="text-textColor">
               Sistemin Çalışması Adım Adım Yazılacak
             </h1>
-            <Button onClick={handleClick}>Getir</Button>
+            {/*<Button onClick={handleClick}>Getir</Button>*/}
           </div>
         </div>
       </MainContainer>

@@ -5,17 +5,17 @@ import axios from "axios";
 import { Error, Header, Loader } from "../components/main";
 import { Box, Button, MainContainer } from "../components/main/UI";
 
-import StarRatings from "react-star-ratings";
-
 import { decodeToken } from "react-jwt";
 
 import SuccessModal from "../components/main/Modals/SuccessModal";
 import NotAuthModal from "../components/main/Modals/NotAuthModal";
 import Comment from "../components/Create/Comment";
 
+import City from "../City";
+
 //BUG:Mobilde Seçilen İptal Edilirken Görsel Problem Var
+
 //TODO:Giriş Yapmadan Saatler Ve Doluluk Görünecek Ama Seçim Yapılamayacak
-//TODO:İl Numaraları İsimlerle Değişecek
 
 const Create = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -33,15 +33,27 @@ const Create = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [loginAlertModal, setIsLoginAlertModal] = useState(false);
 
+  const [doluSaat, setDoluSaat] = useState([]);
+
   useEffect(() => {
     if (token) {
       axios
         .get(`${API_URL}/businesses/${businessID}`)
         .then((res) => setData(res.data));
+
+      axios.get(`${API_URL}/meets/business/${businessID}`).then((res) =>
+        res.data.map((meet) => {
+          setDoluSaat((before) => [
+            ...before,
+            { clock: meet.clock, date: meet.date },
+          ]);
+        })
+      );
     } else {
       setIsLoginAlertModal(true);
     }
   }, []);
+
   const handleCreate = () => {
     setError(false);
     axios
@@ -60,6 +72,7 @@ const Create = () => {
         );
       });
   };
+
   return (
     <>
       <Header />
@@ -81,8 +94,15 @@ const Create = () => {
                 {data.businessCategory}
               </h1>
               <p className="text-textColor pt-4 text-sm">
-                {data.businessAddress} <br /> {data.businessIlce} /{" "}
-                {data.businessCountry}
+                {data.businessAddress} <br />{" "}
+                {data.businessIlce
+                  ? data.businessIlce[0] +
+                    data.businessIlce.substr(1).toLowerCase()
+                  : ""}{" "}
+                /{" "}
+                {data.businessCountry
+                  ? City[data.businessCountry - 1].name
+                  : ""}
               </p>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
@@ -117,28 +137,43 @@ const Create = () => {
                   <h1 className="text-textColor font-semibold text-sm">
                     Randevu Saatini Seçiniz
                   </h1>
-                  {data.businessMeetTimes ? (
-                    <div className="grid grid-cols-3 md:grid-cols-6 gap-x-4 gap-y-2">
-                      {data.businessMeetTimes.map((meetTime, index) => (
-                        <button
-                          key={index}
-                          onClick={() =>
-                            setSelectedTime(
-                              meetTime === selectedTime ? "" : meetTime
-                            )
-                          }
-                          className={`${
-                            selectedTime === meetTime
-                              ? "border-transparent bg-textColor text-boxColor"
-                              : "text-textColor border-borderAndOtherRed "
-                          } border-2 font-semibold px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
-                        >
-                          {meetTime}
-                        </button>
-                      ))}
-                    </div>
+                  {selectedDate.length > 0 ? (
+                    data.businessMeetTimes ? (
+                      <div className="grid grid-cols-3 md:grid-cols-6 gap-x-4 gap-y-2">
+                        {data.businessMeetTimes.map((meetTime, index) => {
+                          return (
+                            <button
+                              key={index}
+                              disabled={doluSaat.find((saat) =>
+                                saat.date == selectedDate
+                                  ? saat.clock == meetTime
+                                    ? true
+                                    : false
+                                  : null
+                              )}
+                              onClick={() =>
+                                setSelectedTime(
+                                  meetTime === selectedTime ? "" : meetTime
+                                )
+                              }
+                              className={`${
+                                selectedTime === meetTime
+                                  ? "border-transparent bg-textColor text-boxColor"
+                                  : "text-textColor border-borderAndOtherRed"
+                              } border-2 font-semibold disabled:bg-disabledColor disabled:border-transparent disabled:text-textColor disabled:cursor-not-allowed px-2 py-2 rounded-lg text-sm transition-colors duration-200 hover:bg-textColor hover:text-boxColor hover:border-transparent`}
+                            >
+                              {meetTime}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <Loader />
+                    )
                   ) : (
-                    <Loader />
+                    <h1 className="text-textColor font-semibold">
+                      Lütfen Önce Randevu Tarihi Seçiniz
+                    </h1>
                   )}
                 </div>
               </div>
