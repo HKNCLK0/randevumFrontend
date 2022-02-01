@@ -3090,7 +3090,14 @@
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
 
-"cross-spawn@^7.0.2", "cross-spawn@^7.0.3":
+"cross-env@^7.0.3":
+  "integrity" "sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw=="
+  "resolved" "https://registry.npmjs.org/cross-env/-/cross-env-7.0.3.tgz"
+  "version" "7.0.3"
+  dependencies:
+    "cross-spawn" "^7.0.1"
+
+"cross-spawn@^7.0.1", "cross-spawn@^7.0.2", "cross-spawn@^7.0.3":
   "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
   "resolved" "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
   "version" "7.0.3"
@@ -7169,6 +7176,11 @@
     "raf" "^3.4.1"
     "regenerator-runtime" "^0.13.9"
     "whatwg-fetch" "^3.6.2"
+
+"react-collapse@^5.1.1":
+  "integrity" "sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw=="
+  "resolved" "https://registry.npmjs.org/react-collapse/-/react-collapse-5.1.1.tgz"
+  "version" "5.1.1"
 
 "react-cookie@^4.1.1":
   "integrity" "sha512-ffn7Y7G4bXiFbnE+dKhHhbP+b8I34mH9jqnm8Llhj89zF4nPxPutxHT1suUqMeCEhLDBI7InYwf1tpaSoK5w8A=="
