@@ -6,8 +6,6 @@ import {
   Category,
   HowToWorks,
   MobileAppBanner,
-  RecommendedBusiness,
-  Cookie,
 } from "../components/Home";
 
 const Home = () => {
