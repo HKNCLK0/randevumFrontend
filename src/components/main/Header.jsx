@@ -10,15 +10,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 
+import { useCookies } from "react-cookie";
+
 import { setCounter } from "../../redux/Notifications";
 
 const Header = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
+  const [cookie, setCookies] = useCookies(["token"]);
+
   const dispatch = useDispatch();
   const count = useSelector((state) => state.register.count);
 
-  const token = sessionStorage.getItem("token");
+  const token = cookie.token;
 
   const user = decodeToken(token);
 

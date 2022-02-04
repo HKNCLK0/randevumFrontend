@@ -1,4 +1,6 @@
 import React from "react";
+import { useCookies } from "react-cookie";
+
 import { Header, Footer } from "../components/main";
 import {
   Meets,
@@ -9,7 +11,9 @@ import {
 } from "../components/Home";
 
 const Home = () => {
-  const token = sessionStorage.getItem("token");
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   return (
     <>
