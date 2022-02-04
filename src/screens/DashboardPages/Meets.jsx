@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { decodeToken } from "react-jwt";
+import { useCookies } from "react-cookie";
 import { LeftNavBar, Main, Box } from "../../components/Dashboard";
 import { Error, Loader, TextFooter } from "../../components/main";
 import { Link } from "react-router-dom";
 
 const Meets = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const token = sessionStorage.getItem("token");
-  const user = decodeToken(token);
+
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,11 @@ const Meets = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${API_URL}/meets/${user.id}`)
+      .get(`${API_URL}/meets`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setData(res.data))
       .finally(() => setLoading(false))
       .catch(() => setError(true));

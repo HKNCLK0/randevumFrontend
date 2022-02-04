@@ -4,8 +4,6 @@ import { Header, Error } from "../components/main";
 
 import { useCookies } from "react-cookie";
 
-import { setUser } from "../redux/UserData";
-
 import {
   BusinessCard,
   Button,
@@ -15,19 +13,15 @@ import {
 } from "../components/main/UI";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const Login = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     document.getElementById("emailInput").focus();
@@ -36,8 +30,10 @@ const Login = () => {
     }
   }, []);
 
-  const expiresDate = new Date(new Date().getTime() + 10820000);
   const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
+
   const handleLogin = () => {
     axios
       .post(`${API_URL}/auth/login`, {
@@ -45,10 +41,9 @@ const Login = () => {
         userPassword: password,
       })
       .then((res) => {
-        setCookies("token", res.data.user.token, {
+        setCookies("token", res.data.token, {
           secure: true,
         });
-        console.log(res);
         navigate("/");
       })
       .catch(() => setError(true));

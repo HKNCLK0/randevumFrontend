@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { decodeToken } from "react-jwt";
+import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
 
 import { BsDot } from "react-icons/bs";
@@ -15,8 +15,9 @@ import { Error, Loader, Success, TextFooter } from "../../components/main";
 const Notifications = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
-  const token = sessionStorage.getItem("token");
-  const user = decodeToken(token);
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   const dispatch = useDispatch();
 
@@ -34,7 +35,11 @@ const Notifications = () => {
 
   const getNotifications = () => {
     axios
-      .get(`${API_URL}/notifications/${user.id}`)
+      .get(`${API_URL}/notifications/`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setData(res.data);
         dispatch(setCounter(res.data.length));

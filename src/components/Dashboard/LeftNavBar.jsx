@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { decodeToken } from "react-jwt";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 import { useNavigate } from "react-router-dom";
 import { FiPlusCircle } from "react-icons/fi";
@@ -12,22 +12,36 @@ import { HiOutlineLogin } from "react-icons/hi";
 
 import { Loader } from "../main";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const LeftNavBar = ({ page }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
-  const user = decodeToken(token);
+
+  const [cookie, setCookies, removeCookie] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   const count = useSelector((state) => state.register.count);
+
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     if (!token) {
       navigate("/");
+    } else {
+      axios
+        .get(`${API_URL}/userData`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => setUser(res.data));
     }
   }, []);
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    window.location.href = "/";
+    removeCookie("token");
+    window.location.replace("/");
   };
 
   const [open, setOpen] = useState(false);

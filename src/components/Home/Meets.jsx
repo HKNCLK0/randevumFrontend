@@ -1,24 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { decodeToken } from "react-jwt";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../main";
 
 const Meets = () => {
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
+
   const [cookie, setCookies] = useCookies(["token"]);
 
   const token = cookie.token;
-  const user = decodeToken(token);
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${API_URL}/meets/${user.id}`, {
+      .get(`${API_URL}/meets`, {
         headers: {
           Authorization: "Bearer " + token,
         },

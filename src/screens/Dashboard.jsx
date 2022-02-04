@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { decodeToken } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 import { LeftNavBar, Main, Box } from "../components/Dashboard";
 import { Error, Footer, TextFooter } from "../components/main";
 import { Input } from "../components/main/UI";
-
+import { useCookies } from "react-cookie";
+import axios from "axios";
 //TODO:Kullanıcı Bilgisi Düzenleme Yapılacak
 
 const Dashboard = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const navigate = useNavigate();
 
-  const token = sessionStorage.getItem("token");
+  const [cookie, setCookies] = useCookies(["token"]);
 
-  const user = decodeToken(token);
+  const token = cookie.token;
+
+  const [user, setUser] = useState({});
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!token) {
       navigate("/");
+    } else {
+      axios
+        .get(`${API_URL}/userData`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => setUser(res.data));
     }
   }, []);
 
@@ -26,7 +38,7 @@ const Dashboard = () => {
     <div className="font-Montserrat">
       {/* Desktop */}
       <div className="hidden md:flex justify-between">
-        <LeftNavBar page="ana" />
+        <LeftNavBar page="ana" user={user} />
         <Main className="w-5/6 justify-between">
           <Box className="w-5/6">
             <h1 className="text-textColor font-bold text-xl">

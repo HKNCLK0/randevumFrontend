@@ -41,10 +41,10 @@ const Footer = () => {
               Tek Uygulama <br /> Milyonlarca Randevu
             </h1>
           </div>
-          {FooterData.map((data) => {
+          {FooterData.map((data, index) => {
             return (
               <div
-                key={data.id}
+                key={index}
                 className="col-span-2 pl-28 flex flex-col items-center justify-start mt-10 gap-2"
               >
                 <h1 className="text-textColor font-bold underline underline-offset-2">

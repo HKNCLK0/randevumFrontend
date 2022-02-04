@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { decodeToken } from "react-jwt";
+import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
 import { Header, Loader } from "../components/main";
 import SuccessModal from "../components/main/Modals/SuccessModal";
@@ -10,28 +10,36 @@ import { Button, MainContainer } from "../components/main/UI";
 const MeetDetails = () => {
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
-  const token = sessionStorage.getItem("token");
-  const user = decodeToken(token);
 
   const { meetID } = useParams();
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
+
   const [data, setData] = useState("");
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${API_URL}/meets/getByMeetID/${meetID}`)
+      .get(`${API_URL}/meets/getByMeetID/${meetID}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setData(res.data))
       .finally(() => setLoading(false));
   }, []);
 
   const handleDelete = async () => {
     await axios
-      .post(`${API_URL}/meets/${meetID}`, {
-        userID: user.id,
+      .delete(`${API_URL}/meets/${meetID}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       })
       .then(() => setSuccess(true));
   };

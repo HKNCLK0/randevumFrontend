@@ -37,10 +37,16 @@ const Header = () => {
 
   useEffect(() => {
     if (token) {
-      axios.get(`${API_URL}/notifications/${user.id}`).then((res) => {
-        setData(res.data);
-        dispatch(setCounter(res.data.length));
-      });
+      axios
+        .get(`${API_URL}/notifications/`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          setData(res.data);
+          dispatch(setCounter(res.data.length));
+        });
     } else return;
   }, []);
   return (

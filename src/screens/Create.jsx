@@ -5,7 +5,7 @@ import axios from "axios";
 import { Error, Header, Loader } from "../components/main";
 import { Box, Button, MainContainer } from "../components/main/UI";
 
-import { decodeToken } from "react-jwt";
+import { useCookies } from "react-cookie";
 
 import SuccessModal from "../components/main/Modals/SuccessModal";
 import NotAuthModal from "../components/main/Modals/NotAuthModal";
@@ -19,8 +19,11 @@ import City from "../City";
 
 const Create = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const token = sessionStorage.getItem("token");
-  const user = decodeToken(token);
+
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
+
   const { businessID } = useParams();
   const [data, setData] = useState([]);
 
@@ -38,17 +41,27 @@ const Create = () => {
   useEffect(() => {
     if (token) {
       axios
-        .get(`${API_URL}/businesses/${businessID}`)
+        .get(`${API_URL}/businesses/${businessID}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
         .then((res) => setData(res.data));
 
-      axios.get(`${API_URL}/meets/business/${businessID}`).then((res) =>
-        res.data.map((meet) => {
-          setDoluSaat((before) => [
-            ...before,
-            { clock: meet.clock, date: meet.date },
-          ]);
+      axios
+        .get(`${API_URL}/meets/business/${businessID}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         })
-      );
+        .then((res) =>
+          res.data.map((meet) => {
+            setDoluSaat((before) => [
+              ...before,
+              { clock: meet.clock, date: meet.date },
+            ]);
+          })
+        );
     } else {
       setIsLoginAlertModal(true);
     }
@@ -57,13 +70,20 @@ const Create = () => {
   const handleCreate = () => {
     setError(false);
     axios
-      .post(`${API_URL}/meets`, {
-        userID: user.id,
-        businessID,
-        businessName: data.businessName,
-        date: selectedDate,
-        clock: selectedTime,
-      })
+      .post(
+        `${API_URL}/meets`,
+        {
+          businessID,
+          businessName: data.businessName,
+          date: selectedDate,
+          clock: selectedTime,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
       .then(() => setIsOpen(true))
       .catch(() => {
         setError(true);
