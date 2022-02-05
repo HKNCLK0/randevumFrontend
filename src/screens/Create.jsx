@@ -93,8 +93,6 @@ const Create = () => {
       });
   };
 
-  console.log(data);
-
   return (
     <>
       <Header />
