@@ -26,8 +26,8 @@ const MobileFooterMenu = ({ title, items }) => {
       <Collapse isOpened={isOpen}>
         <nav>
           <ul className="grid gap-y-2 md:gap-y-4">
-            {items.map((item, key) => (
-              <li key={key}>
+            {items.map((item, index) => (
+              <li key={index}>
                 <Link to={item.to} className="text-sm hover:text-brand-color">
                   - {item.title}
                 </Link>

@@ -8,6 +8,8 @@ import {
   MainContainer,
 } from "../components/main/UI";
 
+import { useCookies } from "react-cookie";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -16,7 +18,10 @@ import axios from "axios";
 const Register = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
+
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");

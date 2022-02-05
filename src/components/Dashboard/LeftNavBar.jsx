@@ -14,9 +14,14 @@ import { Loader } from "../main";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const LeftNavBar = ({ page }) => {
+const LeftNavBar = (props) => {
+  const page = props.page;
   const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.userData.user);
+
+  console.log(user);
 
   const [cookie, setCookies, removeCookie] = useCookies(["token"]);
 
@@ -24,19 +29,11 @@ const LeftNavBar = ({ page }) => {
 
   const count = useSelector((state) => state.register.count);
 
-  const [user, setUser] = useState({});
+  //const [user, setUser] = useState({});
 
   useEffect(() => {
     if (!token) {
       navigate("/");
-    } else {
-      axios
-        .get(`${API_URL}/userData`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => setUser(res.data));
     }
   }, []);
   const handleLogout = () => {

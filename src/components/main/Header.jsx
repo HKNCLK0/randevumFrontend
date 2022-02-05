@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 
+import RandevumLogo from "../../assets/Header/randevum-logo.png";
+
 import { decodeToken } from "react-jwt";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { AiOutlineUser } from "react-icons/ai";
 
 import { useCookies } from "react-cookie";
 
@@ -55,11 +58,7 @@ const Header = () => {
       <div className=" hidden md:flex">
         <div className="w-full h-16 filter drop-shadow-xl bg-boxColor flex items-center md:justify-around text-textColor">
           <div className="w-1/6 flex items-center justify-center ">
-            <img
-              alt="header-logo"
-              className="w-14 h-14"
-              src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/logo-hakan.png?alt=media&token=5a4a56b9-9243-4fb2-8d49-d04ce69f94e4"
-            />
+            <img alt="header-logo" className="w-14 h-14" src={RandevumLogo} />
           </div>
           <div className="hidden sm:text-xs md:text-sm lg:text-md xl:text-base w-2/4 h-full md:flex flex-row font-Montserrat text-primary-bir items-center text-center justify-center font-semibold md:gap-10 lg:gap-20">
             <Link to="/">
@@ -81,11 +80,7 @@ const Header = () => {
                 to="/dashboard"
                 className="flex flex-row items-center gap-2"
               >
-                <img
-                  alt="icon-dashboard"
-                  className="w-5 h-5 mb-1"
-                  src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/user.png?alt=media&token=ecf39dbd-d5f3-43ee-9426-5885b757d857"
-                />
+                <AiOutlineUser size={24} color="#f0ffff" />
                 <h1 className="text-primary-bir">Hesabım</h1>
                 {count == 0 ? null : (
                   <div

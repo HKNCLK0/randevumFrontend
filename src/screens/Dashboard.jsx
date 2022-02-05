@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { LeftNavBar, Main, Box } from "../components/Dashboard";
-import { Error, Footer, TextFooter } from "../components/main";
+import { Error, TextFooter } from "../components/main";
 import { Input } from "../components/main/UI";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../redux/UserData";
 //TODO:Kullanıcı Bilgisi Düzenleme Yapılacak
 
 const Dashboard = () => {
   const API_URL = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -16,7 +20,9 @@ const Dashboard = () => {
 
   const token = cookie.token;
 
-  const [user, setUser] = useState({});
+  //const [user, setUser] = useState({});
+
+  const user = useSelector((state) => state.userData.user);
 
   const [error, setError] = useState(false);
 
@@ -24,15 +30,19 @@ const Dashboard = () => {
     if (!token) {
       navigate("/");
     } else {
-      axios
-        .get(`${API_URL}/userData`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => setUser(res.data));
+      getUserData();
     }
   }, []);
+
+  const getUserData = async () => {
+    return await axios
+      .get(`${API_URL}/userData`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => dispatch(setUser(res.data)));
+  };
 
   return (
     <div className="font-Montserrat">
