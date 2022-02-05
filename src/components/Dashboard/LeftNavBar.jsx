@@ -12,16 +12,12 @@ import { HiOutlineLogin } from "react-icons/hi";
 
 import { Loader } from "../main";
 import { useSelector } from "react-redux";
-import axios from "axios";
 
 const LeftNavBar = (props) => {
   const page = props.page;
-  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.userData.user);
-
-  console.log(user);
 
   const [cookie, setCookies, removeCookie] = useCookies(["token"]);
 
