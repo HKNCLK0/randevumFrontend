@@ -15,25 +15,14 @@ const HowToWorks = () => {
     <>
       <Header />
       <MainContainer>
-        <Box className="w-11/12 text-textColor">
+        <Box className="w-11/12 text-textColor gap-0">
           <h1 className="font-semibold text-xl">Nasıl Çalışır?</h1>
           <div className="w-full flex items-center justify-around">
-            <div
-              className={`flex items-center justify-around bg-background w-3/4 box-shadow py-8 px-10 rounded-lg`}
-            >
-              <img
-                className="w-[500px] h-[300px] rounded-xl"
-                src={RegisterPicture}
-              />
-              <ImArrowLeft color="#F0FFFF" />
-              <h1 className="font-semibold px-16 py-8 rounded-lg bg-boxColor">
-                Randevu Oluşturmak İçin Öncelikle{" "}
-                <Link to="/register" className="underline underline-offset-1">
-                  Kayıt Ol
-                </Link>
-                un
-              </h1>
-            </div>
+            <img
+              className="w-2/3"
+              src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/HowToWorks.svg?alt=media&token=58d038bb-e5f7-4001-90b6-0484bf880e10"
+              alt="how-to-works"
+            />
           </div>
         </Box>
       </MainContainer>

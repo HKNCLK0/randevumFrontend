@@ -25,9 +25,14 @@ const MobileAppBanner = () => {
             <h1 className="text-2xl font-extrabold">Çok Yakında</h1>
           </div>
         </div>
-        <div className="w-px mx-16 h-4/5 rounded-lg bg-gray-300" />
+        <div className="w-px h-4/5 rounded-lg bg-gray-300" />
         {/* TODO:App Resim Yapılacak */}
-        <div>App Resim</div>
+        <div className="w-8/12 h-full flex items-end justify-center">
+          <img
+            className="w-4/6"
+            src="https://firebasestorage.googleapis.com/v0/b/randevum-5d873.appspot.com/o/MobileAppImage.svg?alt=media&token=e6673ec3-b231-4a77-b74d-1c9797fec930"
+          />
+        </div>
       </div>
       <div className="flex md:hidden">
         <div className="flex flex-col gap-2 w-full py-4 items-center bg-boxColor">

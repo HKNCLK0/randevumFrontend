@@ -127,7 +127,13 @@ const Register = () => {
                   type="checkbox"
                 />
                 <span className="flex">
-                  Aydınlatma Metni'ni Okudum ve Kabul Ediyorum
+                  <a
+                    target="_blank"
+                    href="https://randevum.tech/privacy-policy"
+                  >
+                    Gizlilik Politikası
+                  </a>
+                  'nı Okudum ve Kabul Ediyorum
                 </span>
               </label>
               <label className="text-textColor text-xs flex items-center gap-1">
