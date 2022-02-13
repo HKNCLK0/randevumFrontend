@@ -96,7 +96,9 @@ const CreateBusinessList = () => {
                 ))}
             </div>
           ) : (
-            <Loader />
+            <h1 className="text-textColor font-semibold text-lg">
+              İşletme Bulunamadı
+            </h1>
           )}
         </div>
       </MainContainer>
