@@ -76,7 +76,8 @@ const EmailVerification = () => {
           isOpen={modalIsOpen}
           setIsOpen={setIsOpen}
           buttonText="Devam Et"
-          buttonNavigateURL="/register/phone-verification"
+          buttonNavigateURL="/login"
+          //buttonNavigateURL="/register/phone-verification"
         />
       </MainContainer>
     </>
