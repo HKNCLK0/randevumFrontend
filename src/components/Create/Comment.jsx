@@ -6,12 +6,15 @@ import { Error, Success } from "../main";
 
 import StarRatings from "react-star-ratings";
 import { Button } from "../main/UI";
+import { useCookies } from "react-cookie";
 
 //TODO:Comment Ekleme Yapılacak Ve Mevcut Commentler Görünecek
 
 const Comment = ({ businessID }) => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const token = sessionStorage.getItem("token");
+  const [cookie, setCookies] = useCookies(["token"]);
+
+  const token = cookie.token;
 
   const user = decodeToken(token);
 
@@ -25,7 +28,11 @@ const Comment = ({ businessID }) => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/comments/${businessID}`)
+      .get(`${API_URL}/comments`, {
+        headers: {
+          Authorization: "Bearer " + cookie.token,
+        },
+      })
       .then((res) => setData(res.data))
       .catch((err) => console.log(err.response));
   }, [success, error]);

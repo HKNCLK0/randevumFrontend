@@ -49,7 +49,7 @@ const Create = () => {
         .then((res) => setData(res.data));
 
       axios
-        .get(`${API_URL}/meets/business/${businessID}`, {
+        .get(`${API_URL}/meets/business/`, {
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -122,7 +122,7 @@ const Create = () => {
                     : ""}{" "}
                   /{" "}
                   {data.businessCountry
-                    ? City.find((x) => x.name == data.businessCountry).name
+                    ? City[data.businessCountry - 1].name
                     : null}
                 </p>
                 <div className="flex flex-col gap-6">
@@ -130,7 +130,8 @@ const Create = () => {
                     <h1 className="text-textColor font-semibold text-sm">
                       Randevu Tarihini Seçiniz
                     </h1>
-                    {data.businessMeetDates ? (
+                    {data.businessMeetDates &&
+                    data.businessMeetDates.length > 0 ? (
                       <div className="grid grid-cols-3 md:grid-cols-6 gap-x-4">
                         {data.businessMeetDates.map((meetDate, index) => (
                           <button
@@ -151,10 +152,16 @@ const Create = () => {
                         ))}
                       </div>
                     ) : (
-                      <Loader />
+                      <h1 className="text-sm text-textColor font-semibold">
+                        Bu İşletme İle İlgili Saat Bilgisi Bulunamadı!
+                      </h1>
                     )}
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div
+                    className={`${
+                      selectedDate.length ? "" : "hidden"
+                    } flex flex-col gap-2`}
+                  >
                     <h1 className="text-textColor font-semibold text-sm">
                       Randevu Saatini Seçiniz
                     </h1>
@@ -213,12 +220,12 @@ const Create = () => {
           )}
         </Box>
         {/* TODO:Yorum Ekleme Yapılacak */}
-        <Box className="w-11/12 md:w-4/5 md:px-32 px-6">
+        {/*<Box className="w-11/12 md:w-4/5 md:px-32 px-6">
           <h1 className="font-bold md:text-xl text-textColor">
             Değerlendirmeler
           </h1>
           <Comment businessID={businessID} />
-        </Box>
+          </Box>*/}
         <SuccessModal
           isOpen={modalIsOpen}
           setIsOpen={setIsOpen}
