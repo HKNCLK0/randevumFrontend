@@ -15,8 +15,6 @@ import City from "../City";
 
 //BUG:Mobilde Seçilen İptal Edilirken Görsel Problem Var
 
-//TODO:Giriş Yapmadan Saatler Ve Doluluk Görünecek Ama Seçim Yapılamayacak
-
 const Create = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -49,18 +47,14 @@ const Create = () => {
         .then((res) => setData(res.data));
 
       axios
-        .get(`${API_URL}/meets/business/`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
+        .get(`${API_URL}/meets/business/${businessID}`)
         .then((res) =>
-          res.data.map((meet) => {
+          res.data.map((meet) =>
             setDoluSaat((before) => [
               ...before,
               { clock: meet.clock, date: meet.date },
-            ]);
-          })
+            ])
+          )
         );
     } else {
       setIsLoginAlertModal(true);
@@ -141,7 +135,7 @@ const Create = () => {
                                 meetDate === selectedDate ? "" : meetDate
                               )
                             }
-                            className={`${
+                            className={` ${
                               selectedDate === meetDate
                                 ? "border-transparent bg-textColor text-boxColor"
                                 : "text-textColor border-borderAndOtherRed "

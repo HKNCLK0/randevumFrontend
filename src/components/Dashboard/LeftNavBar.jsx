@@ -34,7 +34,9 @@ const LeftNavBar = (props) => {
   }, []);
   const handleLogout = () => {
     removeCookie("token");
-    window.location.replace("/");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 500);
   };
 
   const [open, setOpen] = useState(false);

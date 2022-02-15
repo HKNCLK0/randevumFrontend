@@ -96,7 +96,7 @@ const Login = () => {
             Şifremi Unuttum
           </Link>
         </Box>
-        <BusinessCard href="https://business.randevum.tech/login">
+        <BusinessCard href="https://business.randevum.tech/">
           İşletme Girişi İçin Tıklayınız
         </BusinessCard>
       </MainContainer>
