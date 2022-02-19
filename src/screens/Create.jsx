@@ -99,7 +99,7 @@ const Create = () => {
               <img
                 src={data.businessImage}
                 alt="businessImage"
-                className="w-full md:w-1/3"
+                className="w-full h-80 md:w-1/3"
               />
               <div className="flex flex-col gap-4">
                 <h1 className="text-textColor text-lg font-semibold">
