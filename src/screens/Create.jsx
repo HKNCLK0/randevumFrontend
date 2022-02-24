@@ -214,12 +214,12 @@ const Create = () => {
           )}
         </Box>
         {/* TODO:Yorum Ekleme Yapılacak */}
-        {/*<Box className="w-11/12 md:w-4/5 md:px-32 px-6">
+        <Box className="w-11/12 md:w-4/5 md:px-32 px-6">
           <h1 className="font-bold md:text-xl text-textColor">
             Değerlendirmeler
           </h1>
           <Comment businessID={businessID} />
-          </Box>*/}
+        </Box>
         <SuccessModal
           isOpen={modalIsOpen}
           setIsOpen={setIsOpen}
