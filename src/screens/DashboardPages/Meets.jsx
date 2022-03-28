@@ -48,7 +48,7 @@ const Meets = () => {
                     {data.map((meet) => (
                       <div
                         key={meet._id}
-                        className="w-[100px] h-36 text-textColor flex flex-col text-sm items-center justify-center border-2 rounded-lg cart-shadow"
+                        className="w-[120px] h-40 text-textColor flex flex-col text-sm items-center justify-center border-2 rounded-lg cart-shadow"
                       >
                         <h1 className="font-medium text-center">{meet.date}</h1>
                         <h1 className="font-medium">{meet.clock}</h1>

@@ -23,6 +23,7 @@ const EmailVerification = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    //TODO:decodeToken token çözülmeden user email ile değişecek!
     axios
       .post(`${API_URL}/auth/verification-email`, {
         userID: decodedToken.id,
